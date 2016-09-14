@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Jettison.Utilities;
+using static System.Diagnostics.Debug;
 
 namespace Jettison
 {
@@ -15,6 +17,8 @@ namespace Jettison
         public Form1()
         {
             InitializeComponent();
+            DataHandler dh = new Utilities.DataHandler();
+            WriteLine(dh.loadDataFile());
         }
     }
 }
