@@ -16,9 +16,9 @@ namespace Jettison
     {
         public Form1()
         {
-            InitializeComponent();
+            //InitializeComponent();
             DataHandler dh = new Utilities.DataHandler();
-            WriteLine(dh.loadDataFile());
+            WriteLine(dh.getJettisonById("964f3a71").Directory);
         }
     }
 }

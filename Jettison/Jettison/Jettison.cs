@@ -8,9 +8,10 @@ namespace Jettison
 {
     class Jettison
     {
-        string Directory { get; set; }
-        int MaxLife { get; set; }
-        int CustomLife { get; set; }
-        int CustomLifeDuration { get; set; }
+        public string Id { get; set; }
+        public string Directory { get; set; }
+        public int MaxLife { get; set; }
+        public int CustomLife { get; set; }
+        public int CustomLifeDuration { get; set; }
     }
 }
