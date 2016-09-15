@@ -79,6 +79,7 @@ namespace Jettison
                 };
                 dh.registerDirectory(jettison);
                 MessageBox.Show("Directory registered successfully!", "Jettison");
+                this.Close();
             }
         }
 
