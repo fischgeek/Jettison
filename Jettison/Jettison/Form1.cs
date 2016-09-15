@@ -35,5 +35,10 @@ namespace Jettison
             Register registerForm = new Register();
             registerForm.Show();
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
     }
 }
