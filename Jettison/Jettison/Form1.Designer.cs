@@ -30,7 +30,7 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lstMain = new System.Windows.Forms.ListView();
             this.colDirectory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colLife = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
@@ -56,21 +56,21 @@
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
-            // listView1
+            // lstMain
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lstMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lstMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lstMain.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colDirectory,
             this.colLife});
-            this.listView1.Location = new System.Drawing.Point(12, 99);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(620, 293);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.lstMain.Location = new System.Drawing.Point(12, 99);
+            this.lstMain.Name = "lstMain";
+            this.lstMain.Size = new System.Drawing.Size(620, 293);
+            this.lstMain.TabIndex = 2;
+            this.lstMain.UseCompatibleStateImageBehavior = false;
+            this.lstMain.View = System.Windows.Forms.View.Details;
             // 
             // colDirectory
             // 
@@ -86,7 +86,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(644, 404);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lstMain);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.lblTitle);
             this.Name = "Form1";
@@ -100,14 +100,9 @@
 
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnRegister;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lstMain;
         private System.Windows.Forms.ColumnHeader colDirectory;
         private System.Windows.Forms.ColumnHeader colLife;
-
-        private void btnRegister_Click(object sender, System.EventArgs e)
-        {
-
-        }
     }
 }
 

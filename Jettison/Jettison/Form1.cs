@@ -14,11 +14,26 @@ namespace Jettison
 {
     public partial class Form1 : Form
     {
+        DataHandler dh = DataHandler.getInstance();
+
         public Form1()
         {
-            //InitializeComponent();
-            DataHandler dh = new Utilities.DataHandler();
-            WriteLine(dh.getJettisonById("964f3a71").Directory);
+            InitializeComponent();
+            List<Jettison> all = dh.getAllJettisons();
+            foreach(var j in all) {
+                string[] row = {j.Directory, j.MaxLife.ToString()};
+                ListViewItem item = new ListViewItem(row);
+                lstMain.Items.Add(item);
+            }
+
+            Register registerForm = new Register();
+            registerForm.Show();
+        }
+
+        private void btnRegister_Click(object sender, System.EventArgs e)
+        {
+            Register registerForm = new Register();
+            registerForm.Show();
         }
     }
 }

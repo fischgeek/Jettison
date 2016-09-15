@@ -13,10 +13,16 @@ namespace Jettison.Utilities
     {
         const string dataFile = @"C:\temp\jettison.txt";
         private List<Jettison> allJettisons = new List<Jettison>();
+        private static DataHandler instance = new DataHandler();
 
-        public DataHandler()
+        private DataHandler()
         {
-            loadDataFile();
+            allJettisons = JsonConvert.DeserializeObject<List<Jettison>>(File.ReadAllText(dataFile));
+        }
+
+        public static DataHandler getInstance()
+        {
+            return instance;
         }
 
         private void loadDataFile()
@@ -38,6 +44,16 @@ namespace Jettison.Utilities
                                 where j.Id == id
                                 select j).SingleOrDefault();
             return jettison;
+        }
+
+        public void registerDirectory(Jettison jettison)
+        {
+            allJettisons.Add(jettison);
+        }
+
+        public string generateNewId()
+        {
+            return Guid.NewGuid().ToString();
         }
     }
 }
