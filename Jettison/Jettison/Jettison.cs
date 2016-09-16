@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Jettison
 {
-    class Jettison
+    public class Jettison
     {
         public string Id { get; set; }
         public string Directory { get; set; }

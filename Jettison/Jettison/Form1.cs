@@ -21,11 +21,8 @@ namespace Jettison
             InitializeComponent();
             List<Jettison> all = dh.getAllJettisons();
             foreach(var j in all) {
-                string[] row = {j.Directory, j.MaxLife.ToString()};
-                ListViewItem item = new ListViewItem(row);
-                lstMain.Items.Add(item);
+                addToList(j);
             }
-
             Register registerForm = new Register();
             registerForm.Show();
         }
@@ -33,7 +30,14 @@ namespace Jettison
         private void btnRegister_Click(object sender, System.EventArgs e)
         {
             Register registerForm = new Register();
-            registerForm.Show();
+            registerForm.Show(this);
+        }
+
+        public void addToList(Jettison jettison)
+        {
+            string[] row = { jettison.Directory, jettison.MaxLife.ToString() };
+            ListViewItem item = new ListViewItem(row);
+            lstMain.Items.Add(item);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
