@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Jettison
+namespace JettisonClassLibrary
 {
     public class Jettison
     {

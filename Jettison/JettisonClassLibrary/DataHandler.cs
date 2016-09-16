@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Diagnostics.Debug;
 
-namespace Jettison.Utilities
+namespace JettisonClassLibrary
 {
-    class DataHandler
+    public class DataHandler
     {
         const string dataFile = @"C:\temp\jettison.txt";
         private List<Jettison> allJettisons = new List<Jettison>();
