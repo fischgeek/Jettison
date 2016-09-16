@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.IO;
-using Jettison.Utilities;
 using static System.Diagnostics.Debug;
+using JettisonClassLibrary;
 
-namespace Jettison
+namespace JettisonApp
 {
     public partial class Register : Form
     {

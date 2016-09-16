@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using JettisonClassLibrary;
 using static System.Diagnostics.Debug;
 
-namespace Jettison
+namespace JettisonApp
 {
     public partial class Form1 : Form
     {
