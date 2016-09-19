@@ -78,6 +78,8 @@ namespace JettisonApp
                     CustomLifeDuration = customLifeDuration
                 };
                 dh.registerDirectory(jettison);
+                Form1 form = Application.OpenForms["Form1"] as Form1;
+                form.updateList();
                 MessageBox.Show("Directory registered successfully!", "Jettison");
                 this.Close();
             }

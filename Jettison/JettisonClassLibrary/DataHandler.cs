@@ -33,6 +33,12 @@ namespace JettisonClassLibrary
             }
         }
 
+        private void saveDataFile()
+        {
+            string jsonData = JsonConvert.SerializeObject(allJettisons);
+            File.WriteAllText(dataFile, jsonData);
+        }
+
         public List<Jettison> getAllJettisons()
         {
             return allJettisons;
@@ -49,6 +55,7 @@ namespace JettisonClassLibrary
         public void registerDirectory(Jettison jettison)
         {
             allJettisons.Add(jettison);
+            saveDataFile();
         }
 
         public string generateNewId()

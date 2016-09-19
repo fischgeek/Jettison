@@ -64,6 +64,7 @@
             this.txtDirectory.Name = "txtDirectory";
             this.txtDirectory.Size = new System.Drawing.Size(549, 27);
             this.txtDirectory.TabIndex = 1;
+            this.txtDirectory.Text = "C:\\Users\\jeremiah.fischer\\Desktop\\Dispose";
             // 
             // btnBrowse
             // 
