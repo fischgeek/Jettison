@@ -18,6 +18,7 @@ namespace JettisonApp
     {
         DataHandler dh = DataHandler.getInstance();
         SaveFileDialog sfd = new SaveFileDialog();
+        public Jettison selectedJettison { get; set; }
 
         public Register()
         {
@@ -26,6 +27,13 @@ namespace JettisonApp
             // setup folder dialog
             sfd.FileOk += Sfd_FileOk;
             sfd.Title = "Select a folder";
+        }
+
+        public void initEditForm()
+        {
+            if (selectedJettison != null && !string.IsNullOrEmpty(selectedJettison.Id)) {
+                populateFormControls();
+            }
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -119,6 +127,32 @@ namespace JettisonApp
             lblError.Text = errorMsg;
             lblError.Visible = true;
             return false;
+        }
+
+        private void populateFormControls()
+        {
+            txtDirectory.Text = selectedJettison.Directory;
+            if (selectedJettison.MaxLife == 1) {
+                rb24Hours.Checked = true;
+            } else if (selectedJettison.MaxLife == 2) {
+                rb48Hours.Checked = true;
+            } else if (selectedJettison.MaxLife == 3) {
+                rb72Hours.Checked = true;
+            } else if (selectedJettison.MaxLife == 4) {
+                rbCustom.Checked = true;
+                txtCustomLife.Enabled = true;
+                rbCustomLifeSeconds.Enabled = true;
+                rbCustomLifeMinutes.Enabled = true;
+                rbCustomLifeHours.Enabled = true;
+                txtCustomLife.Text = selectedJettison.CustomLife.ToString();
+                if (selectedJettison.CustomLifeDuration == 1) {
+                    rbCustomLifeSeconds.Checked = true;
+                } else if (selectedJettison.CustomLifeDuration == 2) {
+                    rbCustomLifeMinutes.Checked = true;
+                } else if (selectedJettison.CustomLifeDuration == 3) {
+                    rbCustomLifeHours.Checked = true;
+                }
+            }
         }
     }
 }

@@ -71,6 +71,7 @@
             this.lstMain.TabIndex = 2;
             this.lstMain.UseCompatibleStateImageBehavior = false;
             this.lstMain.View = System.Windows.Forms.View.Details;
+            this.lstMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstMain_MouseClick);
             // 
             // colDirectory
             // 

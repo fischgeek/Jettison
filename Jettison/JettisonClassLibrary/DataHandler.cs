@@ -52,6 +52,14 @@ namespace JettisonClassLibrary
             return jettison;
         }
 
+        public Jettison getJettisonByDirectory(string directory)
+        {
+            Jettison jettison = (from j in allJettisons
+                                 where j.Directory == directory
+                                 select j).SingleOrDefault();
+            return jettison;
+        }
+
         public void registerDirectory(Jettison jettison)
         {
             allJettisons.Add(jettison);

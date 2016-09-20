@@ -15,14 +15,32 @@ namespace JettisonApp
     public partial class Form1 : Form
     {
         DataHandler dh = DataHandler.getInstance();
+        ContextMenu contextMenu = new ContextMenu();
 
         public Form1()
         {
             InitializeComponent();
             updateList();
+
+            // setup context menu
+            MenuItem menuEdit = new MenuItem() { Text = "Edit" };
+            menuEdit.Click += MenuEdit_Click;
+            contextMenu.MenuItems.Add(menuEdit);
+
             // temp
-            Register registerForm = new Register();
-            registerForm.Show(this);
+            //Register registerForm = new Register();
+            //registerForm.Show(this);
+        }
+
+        private void MenuEdit_Click(object sender, EventArgs e)
+        {
+            if (lstMain.SelectedItems.Count > 0) {
+                Jettison jettison = dh.getJettisonByDirectory(lstMain.SelectedItems[0].Text);
+                Register register = new Register();
+                register.selectedJettison = jettison;
+                register.initEditForm();
+                register.Show();
+            }
         }
 
         public void updateList()
@@ -52,6 +70,13 @@ namespace JettisonApp
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             
+        }
+
+        private void lstMain_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) {
+                contextMenu.Show(lstMain, lstMain.PointToClient(Cursor.Position));
+            }
         }
     }
 }
