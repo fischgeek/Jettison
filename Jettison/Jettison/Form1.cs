@@ -29,10 +29,6 @@ namespace JettisonApp
             menuDelete.Click += MenuDelete_Click;
             contextMenu.MenuItems.Add(menuEdit);
             contextMenu.MenuItems.Add(menuDelete);
-
-            // temp
-            //Register registerForm = new Register();
-            //registerForm.Show(this);
         }
 
         private void MenuDelete_Click(object sender, EventArgs e)
