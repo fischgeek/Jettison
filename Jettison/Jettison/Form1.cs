@@ -48,12 +48,13 @@ namespace JettisonApp
             deleteList();
             List<Jettison> all = dh.getAllJettisons();
             foreach (var j in all) {
-                string[] row = { j.Directory, j.MaxLife.ToString() };
+                string[] row = { j.Directory, Jettison.getLifeText(j) };
                 ListViewItem item = new ListViewItem(row);
                 lstMain.Items.Add(item);
             }
             lstMain.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             lstMain.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            lstMain.Sort();
         }
 
         private void deleteList()
@@ -69,7 +70,7 @@ namespace JettisonApp
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
         }
 
         private void lstMain_MouseClick(object sender, MouseEventArgs e)

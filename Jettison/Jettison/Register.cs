@@ -33,6 +33,7 @@ namespace JettisonApp
         {
             if (selectedJettison != null && !string.IsNullOrEmpty(selectedJettison.Id)) {
                 populateFormControls();
+                btnRegister.Text = "Update";
             }
         }
 
@@ -75,20 +76,47 @@ namespace JettisonApp
         private void btnRegister_Click(object sender, EventArgs e)
         {
             if (isFormValid()) {
+                Jettison jettison = new Jettison();
+                jettison.Id = dh.generateNewId();
+
                 int maxLife = 0;
                 int customLife = 0;
                 int customLifeDuration = 0;
-                Jettison jettison = new Jettison() {
-                    Id = dh.generateNewId(),
-                    Directory = txtDirectory.Text,
-                    MaxLife = maxLife,
-                    CustomLife = customLife,
-                    CustomLifeDuration = customLifeDuration
-                };
+
+                if (rb24Hours.Checked) {
+                    maxLife = 1;
+                } else if (rb48Hours.Checked) {
+                    maxLife = 2;
+                } else if (rb72Hours.Checked) {
+                    maxLife = 3;
+                } else if (rbCustom.Checked) {
+                    maxLife = 4;
+                    customLife = Convert.ToInt32(txtCustomLife.Text);
+                    if (rbCustomLifeSeconds.Checked) {
+                        customLifeDuration = 1;
+                    } else if (rbCustomLifeMinutes.Checked) {
+                        customLifeDuration = 2;
+                    } else if (rbCustomLifeHours.Checked) {
+                        customLifeDuration = 3;
+                    }
+                }
+
+                string message = "Directory registered successfully!";
+
+                if (selectedJettison != null) {
+                    jettison = selectedJettison;
+                    message = "Updated successfully!";
+                }
+
+                jettison.Directory = txtDirectory.Text;
+                jettison.MaxLife = maxLife;
+                jettison.CustomLife = customLife;
+                jettison.CustomLifeDuration = customLifeDuration;
                 dh.registerDirectory(jettison);
+
                 Form1 form = Application.OpenForms["Form1"] as Form1;
                 form.updateList();
-                MessageBox.Show("Directory registered successfully!", "Jettison");
+                MessageBox.Show(message, "Jettison");
                 this.Close();
             }
         }

@@ -60,8 +60,16 @@ namespace JettisonClassLibrary
             return jettison;
         }
 
+        private bool jettisonExists(Jettison jettison)
+        {
+            return allJettisons.Exists(x => x.Id == jettison.Id);
+        }
+
         public void registerDirectory(Jettison jettison)
         {
+            if (jettisonExists(jettison)) {
+                allJettisons.Remove(getJettisonById(jettison.Id));
+            }
             allJettisons.Add(jettison);
             saveDataFile();
         }

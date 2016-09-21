@@ -68,6 +68,7 @@
             this.lstMain.Location = new System.Drawing.Point(12, 99);
             this.lstMain.Name = "lstMain";
             this.lstMain.Size = new System.Drawing.Size(620, 293);
+            this.lstMain.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lstMain.TabIndex = 2;
             this.lstMain.UseCompatibleStateImageBehavior = false;
             this.lstMain.View = System.Windows.Forms.View.Details;
