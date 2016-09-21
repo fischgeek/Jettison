@@ -74,6 +74,12 @@ namespace JettisonClassLibrary
             saveDataFile();
         }
 
+        public void removeDirectory(Jettison jettison)
+        {
+            allJettisons.Remove(jettison);
+            saveDataFile();
+        }
+
         public string generateNewId()
         {
             return Guid.NewGuid().ToString();

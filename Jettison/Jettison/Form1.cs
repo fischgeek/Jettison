@@ -24,12 +24,27 @@ namespace JettisonApp
 
             // setup context menu
             MenuItem menuEdit = new MenuItem() { Text = "Edit" };
+            MenuItem menuDelete = new MenuItem() { Text = "Delete" };
             menuEdit.Click += MenuEdit_Click;
+            menuDelete.Click += MenuDelete_Click;
             contextMenu.MenuItems.Add(menuEdit);
+            contextMenu.MenuItems.Add(menuDelete);
 
             // temp
             //Register registerForm = new Register();
             //registerForm.Show(this);
+        }
+
+        private void MenuDelete_Click(object sender, EventArgs e)
+        {
+            if (lstMain.SelectedItems.Count > 0) {
+                DialogResult result = MessageBox.Show("Are you sure you want to unregister this directory?", "Jettison", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes) {
+                    Jettison jettison = dh.getJettisonByDirectory(lstMain.SelectedItems[0].Text);
+                    dh.removeDirectory(jettison);
+                    updateList();
+                }
+            }
         }
 
         private void MenuEdit_Click(object sender, EventArgs e)
