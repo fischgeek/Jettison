@@ -51,7 +51,64 @@ namespace JettisonClassLibrary
                     if (System.IO.Directory.Exists(j.Directory)) {
                         string[] files = System.IO.Directory.GetFiles(j.Directory);
                         foreach (string file in files) {
-                            checkFile(file);                            
+                            DateTime fileDate = File.GetCreationTime(file);
+                            DateTime now = DateTime.Now;
+                            TimeSpan span = now.Subtract(fileDate);
+
+                            WriteLine("file: " + file);
+
+                            // 24 hours
+                            if (j.MaxLife == 1) {
+                                if (span.Hours >= 24) {
+                                    File.Delete(file);
+                                    WriteLine("24 hours");
+                                }
+                            } 
+                            
+                            // 48 hours
+                            else if (j.MaxLife == 2) {
+                                if (span.Hours >= 48) {
+                                    File.Delete(file);
+                                    WriteLine("48 hours");
+                                }
+                            }
+
+                            // 72 hours
+                            else if (j.MaxLife == 3) {
+                                if (span.Hours >= 72) {
+                                    File.Delete(file);
+                                    WriteLine("72 hours");
+                                }
+                            }
+
+                            // custom
+                            else if (j.MaxLife == 4) {
+                                WriteLine("Custom");
+
+                                // seconds
+                                if (j.CustomLifeDuration == 1) {
+                                    if (span.Seconds >= j.CustomLife) {
+                                        File.Delete(file);
+                                        WriteLine("Custom seconds");
+                                    }
+                                }
+
+                                // minutes
+                                else if (j.CustomLifeDuration == 2) {
+                                    if (span.Minutes >= j.CustomLife) {
+                                        File.Delete(file);
+                                        WriteLine("Custom minutes");
+                                    }
+                                }
+
+                                // hours
+                                else if (j.CustomLifeDuration == 3) {
+                                    if (span.Hours >= j.CustomLife) {
+                                        File.Delete(file);
+                                        WriteLine("Custom hours");
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -59,12 +116,9 @@ namespace JettisonClassLibrary
             }
         }
 
-        private static void checkFile(string file)
+        private static void checkFileMinutes(string file)
         {
-            DateTime fileDate = File.GetCreationTime(file);
-            DateTime now = DateTime.Now;
-            TimeSpan span = now.Subtract(fileDate);
-            WriteLine("span: " + span.Minutes);
+
         }
     }
 }
