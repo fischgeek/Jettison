@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Threading;
+using static System.Diagnostics.Debug;
 
 namespace JettisonClassLibrary
 {
@@ -35,6 +38,33 @@ namespace JettisonClassLibrary
                 returnString = customLife;
             }
             return returnString;
+        }
+
+        public static void checkJettisons(bool flag)
+        {
+            DataHandler dh = DataHandler.getInstance();
+            while (true) {
+                if (!flag) {
+                    break;
+                }
+                foreach (var j in dh.getAllJettisons()) {
+                    if (System.IO.Directory.Exists(j.Directory)) {
+                        string[] files = System.IO.Directory.GetFiles(j.Directory);
+                        foreach (string file in files) {
+                            checkFile(file);                            
+                        }
+                    }
+                }
+                Thread.Sleep(1000);
+            }
+        }
+
+        private static void checkFile(string file)
+        {
+            DateTime fileDate = File.GetCreationTime(file);
+            DateTime now = DateTime.Now;
+            TimeSpan span = now.Subtract(fileDate);
+            WriteLine("span: " + span.Minutes);
         }
     }
 }

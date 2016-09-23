@@ -14,13 +14,20 @@ namespace JettisonApp
 {
     public partial class Form1 : Form
     {
+        private System.Threading.Thread monitor = new System.Threading.Thread(new System.Threading.ThreadStart(MonitorThread));
         DataHandler dh = DataHandler.getInstance();
         ContextMenu contextMenu = new ContextMenu();
+
+        private static void MonitorThread()
+        {
+            Jettison.checkJettisons(true);
+        }
 
         public Form1()
         {
             InitializeComponent();
             updateList();
+            monitor.Start();
 
             // setup context menu
             MenuItem menuEdit = new MenuItem() { Text = "Edit" };
@@ -81,7 +88,7 @@ namespace JettisonApp
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            monitor.Abort();
         }
 
         private void lstMain_MouseClick(object sender, MouseEventArgs e)
