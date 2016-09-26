@@ -53,57 +53,48 @@ namespace JettisonClassLibrary
                             DateTime now = DateTime.Now;
                             TimeSpan span = now.Subtract(fileDate);
 
-                            WriteLine("file: " + file);
-
                             // 24 hours
                             if (j.MaxLife == 1) {
-                                if (span.Hours >= 24) {
+                                if (span.TotalHours >= 24) {
                                     File.Delete(file);
-                                    WriteLine("24 hours");
                                 }
                             } 
                             
                             // 48 hours
                             else if (j.MaxLife == 2) {
-                                if (span.Hours >= 48) {
+                                if (span.TotalHours >= 48) {
                                     File.Delete(file);
-                                    WriteLine("48 hours");
                                 }
                             }
 
                             // 72 hours
                             else if (j.MaxLife == 3) {
-                                if (span.Hours >= 72) {
+                                if (span.TotalHours >= 72) {
                                     File.Delete(file);
-                                    WriteLine("72 hours");
                                 }
                             }
 
                             // custom
                             else if (j.MaxLife == 4) {
-                                WriteLine("Custom");
 
                                 // seconds
                                 if (j.CustomLifeDuration == 1) {
-                                    if (span.Seconds >= j.CustomLife) {
+                                    if (span.TotalSeconds >= j.CustomLife) {
                                         File.Delete(file);
-                                        WriteLine("Custom seconds");
                                     }
                                 }
 
                                 // minutes
                                 else if (j.CustomLifeDuration == 2) {
-                                    if (span.Minutes >= j.CustomLife) {
+                                    if (span.TotalMinutes >= j.CustomLife) {
                                         File.Delete(file);
-                                        WriteLine("Custom minutes");
                                     }
                                 }
 
                                 // hours
                                 else if (j.CustomLifeDuration == 3) {
-                                    if (span.Hours >= j.CustomLife) {
+                                    if (span.TotalHours >= j.CustomLife) {
                                         File.Delete(file);
-                                        WriteLine("Custom hours");
                                     }
                                 }
                             }
