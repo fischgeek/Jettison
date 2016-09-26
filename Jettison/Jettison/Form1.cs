@@ -67,14 +67,16 @@ namespace JettisonApp
         {
             deleteList();
             List<Jettison> all = dh.getAllJettisons();
-            foreach (var j in all) {
-                string[] row = { j.Directory, Jettison.getLifeText(j) };
-                ListViewItem item = new ListViewItem(row);
-                lstMain.Items.Add(item);
+            if (all != null) {
+                foreach (var j in all) {
+                    string[] row = { j.Directory, Jettison.getLifeText(j) };
+                    ListViewItem item = new ListViewItem(row);
+                    lstMain.Items.Add(item);
+                }
+                lstMain.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                lstMain.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                lstMain.Sort();
             }
-            lstMain.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            lstMain.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            lstMain.Sort();
         }
 
         private void deleteList()

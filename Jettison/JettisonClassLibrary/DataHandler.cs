@@ -12,14 +12,27 @@ namespace JettisonClassLibrary
     public class DataHandler
     {
         private string appdata = Environment.GetEnvironmentVariable("AppData");
-        private const string dataFile = "jettison.txt";
+        private string dataFile = Environment.GetEnvironmentVariable("AppData") + @"\Jettison\jettison.txt";
         private List<Jettison> allJettisons = new List<Jettison>();
         private static DataHandler instance = new DataHandler();
 
         private DataHandler()
         {
             string dataDir = appdata + @"\Jettison\";
-            allJettisons = JsonConvert.DeserializeObject<List<Jettison>>(File.ReadAllText(dataFile));
+            if (!Directory.Exists(dataDir)) {
+                Directory.CreateDirectory(dataDir);
+                using (File.Create(dataFile)) { }
+            }
+            string dataFileContents = string.Empty;
+            try {
+                dataFileContents = File.ReadAllText(dataFile);
+            } catch (Exception ex) {
+                WriteLine(ex.Message);
+            }
+            allJettisons = JsonConvert.DeserializeObject<List<Jettison>>(dataFileContents);
+            if (allJettisons == null) {
+                allJettisons = new List<Jettison>();
+            }
         }
 
         public static DataHandler getInstance()
@@ -56,7 +69,11 @@ namespace JettisonClassLibrary
 
         private bool jettisonExists(Jettison jettison)
         {
-            return allJettisons.Exists(x => x.Id == jettison.Id);
+            if (allJettisons.Count > 0) {
+                return allJettisons.Exists(x => x.Id == jettison.Id);
+            } else {
+                return false;
+            }
         }
 
         public void registerDirectory(Jettison jettison)

@@ -43,8 +43,9 @@ namespace JettisonClassLibrary
         public static void checkJettisons()
         {
             DataHandler dh = DataHandler.getInstance();
-            while (true) {
-                foreach (var j in dh.getAllJettisons()) {
+            List<Jettison> all = dh.getAllJettisons();
+            while (all != null && all.Count > 0) {
+                foreach (var j in all) {
                     if (System.IO.Directory.Exists(j.Directory)) {
                         string[] files = System.IO.Directory.GetFiles(j.Directory);
                         foreach (string file in files) {
@@ -111,11 +112,6 @@ namespace JettisonClassLibrary
                 }
                 Thread.Sleep(1000);
             }
-        }
-
-        private static void checkFileMinutes(string file)
-        {
-
         }
     }
 }
