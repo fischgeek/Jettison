@@ -45,7 +45,7 @@ namespace JettisonClassLibrary
             DataHandler dh = DataHandler.getInstance();
             List<Jettison> all = dh.getAllJettisons();
             while (all != null && all.Count > 0) {
-                foreach (var j in all) {
+                foreach (Jettison j in all.ToList()) {
                     if (System.IO.Directory.Exists(j.Directory)) {
 
                         string[] dirs = System.IO.Directory.GetDirectories(j.Directory);
@@ -98,6 +98,7 @@ namespace JettisonClassLibrary
                 if (j.CustomLifeDuration == 1) {
                     if (span.TotalSeconds >= j.CustomLife) {
                         File.Delete(file);
+                        //FileOperationAPIWrapper.MoveToRecycleBin(file);
                     }
                 }
 
