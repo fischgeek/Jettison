@@ -49,24 +49,15 @@ namespace JettisonClassLibrary
                     if (System.IO.Directory.Exists(j.Directory)) {
 
                         string[] dirs = System.IO.Directory.GetDirectories(j.Directory);
-                        string[] files = System.IO.Directory.GetFiles(j.Directory);
+                        string[] files = System.IO.Directory.GetFiles(j.Directory, "*.*", SearchOption.AllDirectories);
 
-                        // first, check files in the root
+                        // first, check and remove files in all directories if necessary
                         foreach (string file in files) {
                             checkFile(j, file);
                         }
 
-                        // next, check files in any sub directories and delete the directory once it's empty
-                        foreach (string dir in dirs) {
-                            string[] subFiles = System.IO.Directory.GetFiles(dir);
-                            if (subFiles.Count() > 0) {
-                                foreach (string file in subFiles) {
-                                    checkFile(j, file);
-                                }
-                            } else {
-                                System.IO.Directory.Delete(dir);
-                            }
-                        }
+                        // next, clean up empty sub directories
+                        cleanDirectory(j.Directory);
                     }
                     Thread.Sleep(1000);
                 }
@@ -122,6 +113,17 @@ namespace JettisonClassLibrary
                     if (span.TotalHours >= j.CustomLife) {
                         File.Delete(file);
                     }
+                }
+            }
+        }
+
+        private static void cleanDirectory(string startLocation)
+        {
+            // http://stackoverflow.com/questions/2811509/c-sharp-remove-all-empty-subdirectories
+            foreach (var directory in System.IO.Directory.GetDirectories(startLocation)) {
+                cleanDirectory(directory);
+                if (System.IO.Directory.GetFiles(directory).Length == 0 && System.IO.Directory.GetDirectories(directory).Length == 0) {
+                    System.IO.Directory.Delete(directory, false);
                 }
             }
         }
