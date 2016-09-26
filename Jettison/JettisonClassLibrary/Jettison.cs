@@ -47,61 +47,82 @@ namespace JettisonClassLibrary
             while (all != null && all.Count > 0) {
                 foreach (var j in all) {
                     if (System.IO.Directory.Exists(j.Directory)) {
+
+                        string[] dirs = System.IO.Directory.GetDirectories(j.Directory);
                         string[] files = System.IO.Directory.GetFiles(j.Directory);
+
+                        // first, check files in the root
                         foreach (string file in files) {
-                            DateTime fileDate = File.GetCreationTime(file);
-                            DateTime now = DateTime.Now;
-                            TimeSpan span = now.Subtract(fileDate);
+                            checkFile(j, file);
+                        }
 
-                            // 24 hours
-                            if (j.MaxLife == 1) {
-                                if (span.TotalHours >= 24) {
-                                    File.Delete(file);
+                        // next, check files in any sub directories and delete the directory once it's empty
+                        foreach (string dir in dirs) {
+                            string[] subFiles = System.IO.Directory.GetFiles(dir);
+                            if (subFiles.Count() > 0) {
+                                foreach (string file in subFiles) {
+                                    checkFile(j, file);
                                 }
-                            } 
-                            
-                            // 48 hours
-                            else if (j.MaxLife == 2) {
-                                if (span.TotalHours >= 48) {
-                                    File.Delete(file);
-                                }
-                            }
-
-                            // 72 hours
-                            else if (j.MaxLife == 3) {
-                                if (span.TotalHours >= 72) {
-                                    File.Delete(file);
-                                }
-                            }
-
-                            // custom
-                            else if (j.MaxLife == 4) {
-
-                                // seconds
-                                if (j.CustomLifeDuration == 1) {
-                                    if (span.TotalSeconds >= j.CustomLife) {
-                                        File.Delete(file);
-                                    }
-                                }
-
-                                // minutes
-                                else if (j.CustomLifeDuration == 2) {
-                                    if (span.TotalMinutes >= j.CustomLife) {
-                                        File.Delete(file);
-                                    }
-                                }
-
-                                // hours
-                                else if (j.CustomLifeDuration == 3) {
-                                    if (span.TotalHours >= j.CustomLife) {
-                                        File.Delete(file);
-                                    }
-                                }
+                            } else {
+                                System.IO.Directory.Delete(dir);
                             }
                         }
                     }
+                    Thread.Sleep(1000);
                 }
-                Thread.Sleep(1000);
+            }
+        }
+
+        private static void checkFile(Jettison j, string file)
+        {
+            DateTime fileDate = File.GetCreationTime(file);
+            DateTime now = DateTime.Now;
+            TimeSpan span = now.Subtract(fileDate);
+
+            // 24 hours
+            if (j.MaxLife == 1) {
+                if (span.TotalHours >= 24) {
+                    File.Delete(file);
+                }
+            }
+
+            // 48 hours
+            else if (j.MaxLife == 2) {
+                if (span.TotalHours >= 48) {
+                    File.Delete(file);
+                }
+            }
+
+            // 72 hours
+            else if (j.MaxLife == 3) {
+                if (span.TotalHours >= 72) {
+                    File.Delete(file);
+                }
+            }
+
+            // custom
+            else if (j.MaxLife == 4) {
+
+                // seconds
+                if (j.CustomLifeDuration == 1) {
+                    if (span.TotalSeconds >= j.CustomLife) {
+                        File.Delete(file);
+                    }
+                }
+
+                // minutes
+                else if (j.CustomLifeDuration == 2) {
+                    if (span.TotalMinutes >= j.CustomLife) {
+                        File.Delete(file);
+                    }
+                }
+
+                // hours
+                else if (j.CustomLifeDuration == 3) {
+                    if (span.TotalHours >= j.CustomLife) {
+                        File.Delete(file);
+                    }
+                }
             }
         }
     }
