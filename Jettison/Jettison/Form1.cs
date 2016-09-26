@@ -20,7 +20,7 @@ namespace JettisonApp
 
         private static void MonitorThread()
         {
-            Jettison.checkJettisons(true);
+            Jettison.checkJettisons();
         }
 
         public Form1()
@@ -28,6 +28,8 @@ namespace JettisonApp
             InitializeComponent();
             updateList();
             monitor.Start();
+
+            WriteLine(Environment.GetEnvironmentVariable("AppData"));
 
             // setup context menu
             MenuItem menuEdit = new MenuItem() { Text = "Edit" };

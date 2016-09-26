@@ -11,26 +11,20 @@ namespace JettisonClassLibrary
 {
     public class DataHandler
     {
-        const string dataFile = @"C:\temp\jettison.txt";
+        private string appdata = Environment.GetEnvironmentVariable("AppData");
+        private const string dataFile = "jettison.txt";
         private List<Jettison> allJettisons = new List<Jettison>();
         private static DataHandler instance = new DataHandler();
 
         private DataHandler()
         {
+            string dataDir = appdata + @"\Jettison\";
             allJettisons = JsonConvert.DeserializeObject<List<Jettison>>(File.ReadAllText(dataFile));
         }
 
         public static DataHandler getInstance()
         {
             return instance;
-        }
-
-        private void loadDataFile()
-        {
-            if (File.Exists(dataFile))
-            {
-                allJettisons = JsonConvert.DeserializeObject<List<Jettison>>(File.ReadAllText(dataFile));
-            }
         }
 
         private void saveDataFile()

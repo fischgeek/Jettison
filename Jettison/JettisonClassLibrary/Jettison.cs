@@ -40,13 +40,10 @@ namespace JettisonClassLibrary
             return returnString;
         }
 
-        public static void checkJettisons(bool flag)
+        public static void checkJettisons()
         {
             DataHandler dh = DataHandler.getInstance();
             while (true) {
-                if (!flag) {
-                    break;
-                }
                 foreach (var j in dh.getAllJettisons()) {
                     if (System.IO.Directory.Exists(j.Directory)) {
                         string[] files = System.IO.Directory.GetFiles(j.Directory);
