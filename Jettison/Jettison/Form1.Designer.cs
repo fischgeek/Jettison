@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
             this.lstMain = new System.Windows.Forms.ListView();
@@ -88,18 +87,22 @@
             // 
             this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSettings.BackColor = System.Drawing.Color.Transparent;
-            this.btnSettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSettings.BackgroundImage")));
+            this.btnSettings.BackgroundImage = global::JettisonApp.Properties.Resources.settings_normal;
             this.btnSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSettings.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSettings.FlatAppearance.BorderSize = 0;
             this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(600, 9);
+            this.btnSettings.Location = new System.Drawing.Point(590, 9);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(32, 32);
+            this.btnSettings.Size = new System.Drawing.Size(40, 40);
             this.btnSettings.TabIndex = 3;
             this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSettings_MouseDown);
+            this.btnSettings.MouseEnter += new System.EventHandler(this.btnSettings_MouseEnter);
+            this.btnSettings.MouseLeave += new System.EventHandler(this.btnSettings_MouseLeave);
+            this.btnSettings.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnSettings_MouseUp);
             // 
             // Form1
             // 

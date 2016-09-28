@@ -17,6 +17,7 @@ namespace JettisonApp
         private System.Threading.Thread monitor = new System.Threading.Thread(new System.Threading.ThreadStart(MonitorThread));
         DataHandler dh = DataHandler.getInstance();
         ContextMenu contextMenu = new ContextMenu();
+        private int btnVariant = 1;
 
         private static void MonitorThread()
         {
@@ -100,6 +101,28 @@ namespace JettisonApp
             if (e.Button == MouseButtons.Right) {
                 contextMenu.Show(lstMain, lstMain.PointToClient(Cursor.Position));
             }
+        }
+
+        private void btnSettings_MouseDown(object sender, MouseEventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.Size = new Size(btn.Size.Width - btnVariant, btn.Size.Height - btnVariant);
+        }
+
+        private void btnSettings_MouseUp(object sender, MouseEventArgs e)
+        {
+            Button btn = (Button)sender;
+            btn.Size = new Size(btn.Size.Width + btnVariant, btn.Size.Height + btnVariant);
+        }
+
+        private void btnSettings_MouseEnter(object sender, EventArgs e)
+        {
+            btnSettings.BackgroundImage = Properties.Resources.settings_hover;
+        }
+
+        private void btnSettings_MouseLeave(object sender, EventArgs e)
+        {
+            btnSettings.BackgroundImage = Properties.Resources.settings_normal;
         }
     }
 }
