@@ -99,6 +99,7 @@
             this.btnSettings.Size = new System.Drawing.Size(40, 40);
             this.btnSettings.TabIndex = 3;
             this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             this.btnSettings.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSettings_MouseDown);
             this.btnSettings.MouseEnter += new System.EventHandler(this.btnSettings_MouseEnter);
             this.btnSettings.MouseLeave += new System.EventHandler(this.btnSettings_MouseLeave);

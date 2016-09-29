@@ -42,6 +42,7 @@
             this.btnRegister = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblError = new System.Windows.Forms.Label();
+            this.cbxRecycleFiles = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,16 +63,16 @@
             this.txtDirectory.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDirectory.Location = new System.Drawing.Point(13, 37);
             this.txtDirectory.Name = "txtDirectory";
-            this.txtDirectory.Size = new System.Drawing.Size(549, 27);
+            this.txtDirectory.Size = new System.Drawing.Size(571, 27);
             this.txtDirectory.TabIndex = 1;
             // 
             // btnBrowse
             // 
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBrowse.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowse.Location = new System.Drawing.Point(568, 36);
+            this.btnBrowse.Location = new System.Drawing.Point(590, 36);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(56, 29);
+            this.btnBrowse.Size = new System.Drawing.Size(44, 29);
             this.btnBrowse.TabIndex = 2;
             this.btnBrowse.Text = ". . .";
             this.btnBrowse.UseVisualStyleBackColor = true;
@@ -187,7 +188,7 @@
             // btnRegister
             // 
             this.btnRegister.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(12, 238);
+            this.btnRegister.Location = new System.Drawing.Point(12, 314);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(84, 32);
             this.btnRegister.TabIndex = 12;
@@ -211,19 +212,30 @@
             this.lblError.AutoSize = true;
             this.lblError.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(102, 244);
+            this.lblError.Location = new System.Drawing.Point(102, 320);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(124, 20);
             this.lblError.TabIndex = 14;
             this.lblError.Text = "error placeholder";
             this.lblError.Visible = false;
             // 
+            // cbxRecycleFiles
+            // 
+            this.cbxRecycleFiles.AutoSize = true;
+            this.cbxRecycleFiles.Location = new System.Drawing.Point(12, 256);
+            this.cbxRecycleFiles.Name = "cbxRecycleFiles";
+            this.cbxRecycleFiles.Size = new System.Drawing.Size(250, 17);
+            this.cbxRecycleFiles.TabIndex = 15;
+            this.cbxRecycleFiles.Text = "Send files to the Recycle bin instead of deleting";
+            this.cbxRecycleFiles.UseVisualStyleBackColor = true;
+            // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(636, 283);
+            this.ClientSize = new System.Drawing.Size(646, 358);
+            this.Controls.Add(this.cbxRecycleFiles);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnRegister);
@@ -261,5 +273,6 @@
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.CheckBox cbxRecycleFiles;
     }
 }

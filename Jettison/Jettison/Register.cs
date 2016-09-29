@@ -112,6 +112,7 @@ namespace JettisonApp
                 jettison.MaxLife = maxLife;
                 jettison.CustomLife = customLife;
                 jettison.CustomLifeDuration = customLifeDuration;
+                jettison.Recycle = cbxRecycleFiles.Checked;
                 dh.registerDirectory(jettison);
 
                 Form1 form = Application.OpenForms["Form1"] as Form1;

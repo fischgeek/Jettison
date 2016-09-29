@@ -12,8 +12,10 @@ namespace JettisonClassLibrary
     public class DataHandler
     {
         private string appdata = Environment.GetEnvironmentVariable("AppData");
-        private string dataFile = Environment.GetEnvironmentVariable("AppData") + @"\Jettison\jettison.txt";
+        private string dataFile = Environment.GetEnvironmentVariable("AppData") + @"\Jettison\jettison.json";
+        private string settingsFile = Environment.GetEnvironmentVariable("AppData") + @"\Jettison\settings.json";
         private List<Jettison> allJettisons = new List<Jettison>();
+        private Dictionary<string, bool> settings = new Dictionary<string, bool>();
         private static DataHandler instance = new DataHandler();
 
         private DataHandler()
@@ -21,8 +23,14 @@ namespace JettisonClassLibrary
             string dataDir = appdata + @"\Jettison\";
             if (!Directory.Exists(dataDir)) {
                 Directory.CreateDirectory(dataDir);
+            }
+            if (!File.Exists(dataFile)) {
                 using (File.Create(dataFile)) { }
             }
+            if (!File.Exists(settingsFile)) {
+                using (File.Create(settingsFile)) { }
+            }
+
             string dataFileContents = string.Empty;
             try {
                 dataFileContents = File.ReadAllText(dataFile);
@@ -33,6 +41,14 @@ namespace JettisonClassLibrary
             if (allJettisons == null) {
                 allJettisons = new List<Jettison>();
             }
+
+            string settingsFileContents = string.Empty;
+            try {
+                settingsFileContents = File.ReadAllText(settingsFile);
+            } catch (Exception ex) {
+                WriteLine(ex.Message);
+            }
+            settings = JsonConvert.DeserializeObject<Dictionary<string, bool>>(settingsFileContents);
         }
 
         public static DataHandler getInstance()
@@ -94,6 +110,23 @@ namespace JettisonClassLibrary
         public string generateNewId()
         {
             return Guid.NewGuid().ToString();
+        }
+
+        public Dictionary<string, bool> getSettings()
+        {
+            if (settings == null) {
+                Dictionary<string, bool> firstTimeSettings = new Dictionary<string, bool>();
+                firstTimeSettings["RunOnStartup"] = true;
+                updateSettings(firstTimeSettings);
+            }
+            return settings;
+        }
+
+        public void updateSettings(Dictionary<string, bool> settingsFromDialog)
+        {
+            settings = settingsFromDialog;
+            string settingsString = JsonConvert.SerializeObject(settingsFromDialog);
+            File.WriteAllText(settingsFile, settingsString);
         }
     }
 }

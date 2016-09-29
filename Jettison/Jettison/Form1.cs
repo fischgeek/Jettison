@@ -105,14 +105,12 @@ namespace JettisonApp
 
         private void btnSettings_MouseDown(object sender, MouseEventArgs e)
         {
-            Button btn = (Button)sender;
-            btn.Size = new Size(btn.Size.Width - btnVariant, btn.Size.Height - btnVariant);
+            btnSettings.Size = new Size(btnSettings.Size.Width - btnVariant, btnSettings.Size.Height - btnVariant);
         }
 
         private void btnSettings_MouseUp(object sender, MouseEventArgs e)
         {
-            Button btn = (Button)sender;
-            btn.Size = new Size(btn.Size.Width + btnVariant, btn.Size.Height + btnVariant);
+            btnSettings.Size = new Size(btnSettings.Size.Width + btnVariant, btnSettings.Size.Height + btnVariant);
         }
 
         private void btnSettings_MouseEnter(object sender, EventArgs e)
@@ -123,6 +121,12 @@ namespace JettisonApp
         private void btnSettings_MouseLeave(object sender, EventArgs e)
         {
             btnSettings.BackgroundImage = Properties.Resources.settings_normal;
+        }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.Show();
         }
     }
 }

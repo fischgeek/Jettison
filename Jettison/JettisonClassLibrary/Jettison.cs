@@ -16,6 +16,7 @@ namespace JettisonClassLibrary
         public int MaxLife { get; set; }
         public int CustomLife { get; set; }
         public int CustomLifeDuration { get; set; }
+        public bool Recycle { get; set; }
 
         public static string getLifeText(Jettison jettison)
         {
@@ -125,6 +126,23 @@ namespace JettisonClassLibrary
                 cleanDirectory(directory);
                 if (System.IO.Directory.GetFiles(directory).Length == 0 && System.IO.Directory.GetDirectories(directory).Length == 0) {
                     System.IO.Directory.Delete(directory, false);
+                }
+            }
+        }
+
+        public static void HandleSettings(Dictionary<string, bool> settings)
+        {
+            string runningDir = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+            string startupDir = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+            string runningFile = Path.Combine(runningDir, "Jettison.exe");
+            string shortcut = Path.Combine(startupDir, "Jettison.lnk");
+            if (settings["RunOnStartup"]) {
+                if (!File.Exists(shortcut)) {
+                    //File.Copy(runnin, startupDir);
+                }
+            } else {
+                if (File.Exists("path/to/startup")) {
+                    File.Delete(shortcut);
                 }
             }
         }
