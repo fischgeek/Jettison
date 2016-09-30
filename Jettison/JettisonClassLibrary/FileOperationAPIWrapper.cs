@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using IWshRuntimeLibrary;
 
 namespace JettisonClassLibrary
 {   
@@ -65,9 +66,7 @@ namespace JettisonClassLibrary
             /// </summary>
             FO_RENAME = 0x0004,
         }
-
-
-
+        
         /// <summary>
         /// SHFILEOPSTRUCT for SHFileOperation from COM
         /// </summary>
@@ -149,6 +148,18 @@ namespace JettisonClassLibrary
             return deleteFile(path,
                               FileOperationFlags.FOF_NOCONFIRMATION | FileOperationFlags.FOF_NOERRORUI |
                               FileOperationFlags.FOF_SILENT);
+        }
+
+        public static void CreateShortcut(string shortcutName, string shortcutPath, string targetFileLocation)
+        {
+            string shortcutLocation = System.IO.Path.Combine(shortcutPath, shortcutName + ".lnk");
+            WshShell shell = new WshShell();
+            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutLocation);
+
+            shortcut.Description = "Jettison Shortcut";
+            //shortcut.IconLocation = @"c:\myicon.ico";
+            shortcut.TargetPath = targetFileLocation;
+            shortcut.Save();
         }
     }
 }
