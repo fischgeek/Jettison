@@ -16,6 +16,7 @@ namespace JettisonClassLibrary
         private string settingsFile = Environment.GetEnvironmentVariable("AppData") + @"\Jettison\settings.json";
         private List<Jettison> allJettisons = new List<Jettison>();
         private Dictionary<string, bool> settings = new Dictionary<string, bool>();
+        private StoredData storedData = StoredData.getInstance();
         private static DataHandler instance = new DataHandler();
 
         private DataHandler()
@@ -37,18 +38,10 @@ namespace JettisonClassLibrary
             } catch (Exception ex) {
                 WriteLine(ex.Message);
             }
-            allJettisons = JsonConvert.DeserializeObject<List<Jettison>>(dataFileContents);
-            if (allJettisons == null) {
-                allJettisons = new List<Jettison>();
+            storedData = JsonConvert.DeserializeObject<StoredData>(dataFileContents);
+            if (storedData == null) {
+                storedData = StoredData.getInstance();
             }
-
-            string settingsFileContents = string.Empty;
-            try {
-                settingsFileContents = File.ReadAllText(settingsFile);
-            } catch (Exception ex) {
-                WriteLine(ex.Message);
-            }
-            settings = JsonConvert.DeserializeObject<Dictionary<string, bool>>(settingsFileContents);
         }
 
         public static DataHandler getInstance()
@@ -58,18 +51,18 @@ namespace JettisonClassLibrary
 
         private void saveDataFile()
         {
-            string jsonData = JsonConvert.SerializeObject(allJettisons);
+            string jsonData = JsonConvert.SerializeObject(storedData);
             File.WriteAllText(dataFile, jsonData);
         }
 
         public List<Jettison> getAllJettisons()
         {
-            return allJettisons;
+            return storedData.Jettisons;
         }
 
         public Jettison getJettisonById(string id)
         {
-            Jettison jettison = (from j in allJettisons
+            Jettison jettison = (from j in storedData.Jettisons
                                 where j.Id == id
                                 select j).SingleOrDefault();
             return jettison;
@@ -77,7 +70,7 @@ namespace JettisonClassLibrary
 
         public Jettison getJettisonByDirectory(string directory)
         {
-            Jettison jettison = (from j in allJettisons
+            Jettison jettison = (from j in storedData.Jettisons
                                  where j.Directory == directory
                                  select j).SingleOrDefault();
             return jettison;
@@ -85,8 +78,8 @@ namespace JettisonClassLibrary
 
         private bool jettisonExists(Jettison jettison)
         {
-            if (allJettisons.Count > 0) {
-                return allJettisons.Exists(x => x.Id == jettison.Id);
+            if (storedData.Jettisons.Count > 0) {
+                return storedData.Jettisons.Exists(x => x.Id == jettison.Id);
             } else {
                 return false;
             }
@@ -95,15 +88,15 @@ namespace JettisonClassLibrary
         public void registerDirectory(Jettison jettison)
         {
             if (jettisonExists(jettison)) {
-                allJettisons.Remove(getJettisonById(jettison.Id));
+                storedData.Jettisons.Remove(getJettisonById(jettison.Id));
             }
-            allJettisons.Add(jettison);
+            storedData.Jettisons.Add(jettison);
             saveDataFile();
         }
 
         public void removeDirectory(Jettison jettison)
         {
-            allJettisons.Remove(jettison);
+            storedData.Jettisons.Remove(jettison);
             saveDataFile();
         }
 
@@ -114,17 +107,17 @@ namespace JettisonClassLibrary
 
         public Dictionary<string, bool> getSettings()
         {
-            if (settings == null) {
+            if (storedData.Settings == null || storedData.Settings.Count == 0) {
                 Dictionary<string, bool> firstTimeSettings = new Dictionary<string, bool>();
                 firstTimeSettings["RunOnStartup"] = true;
                 updateSettings(firstTimeSettings);
             }
-            return settings;
+            return storedData.Settings;
         }
 
         public void updateSettings(Dictionary<string, bool> settingsFromDialog)
         {
-            settings = settingsFromDialog;
+            storedData.Settings = settingsFromDialog;
             string settingsString = JsonConvert.SerializeObject(settingsFromDialog);
             File.WriteAllText(settingsFile, settingsString);
         }

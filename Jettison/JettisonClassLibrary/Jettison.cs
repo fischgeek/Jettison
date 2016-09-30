@@ -138,10 +138,10 @@ namespace JettisonClassLibrary
             string shortcut = Path.Combine(startupDir, "Jettison.lnk");
             if (settings["RunOnStartup"]) {
                 if (!File.Exists(shortcut)) {
-                    //File.Copy(runnin, startupDir);
+                    FileOperationAPIWrapper.CreateShortcut("Jettison", startupDir, runningFile);
                 }
             } else {
-                if (File.Exists("path/to/startup")) {
+                if (File.Exists(shortcut)) {
                     File.Delete(shortcut);
                 }
             }
