@@ -28,9 +28,12 @@ namespace JettisonApp
             settings.Add("RunOnStartup", cbxRunOnStartup.Checked);
             dh.updateSettings(settings);
 
-            JettisonClassLibrary.Jettison.HandleSettings(settings);
-            MessageBox.Show("Jettison", "Settings updated!");
+            Jettison.HandleSettings(settings);
             this.Close();
+            Form1 form = Application.OpenForms["Form1"] as Form1;
+            form.updateStatus("Settings updated!");
+
+            //MessageBox.Show("Settings updated!", "Jettison");
         }
 
         private void btnCancelSettings_Click(object sender, EventArgs e)

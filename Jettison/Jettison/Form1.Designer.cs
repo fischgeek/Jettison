@@ -34,6 +34,7 @@
             this.colDirectory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colLife = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSettings = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -105,6 +106,16 @@
             this.btnSettings.MouseLeave += new System.EventHandler(this.btnSettings_MouseLeave);
             this.btnSettings.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnSettings_MouseUp);
             // 
+            // lblStatus
+            // 
+            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblStatus.Location = new System.Drawing.Point(179, 80);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(450, 13);
+            this.lblStatus.TabIndex = 4;
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -112,6 +123,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(644, 404);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.lstMain);
             this.Controls.Add(this.btnRegister);
@@ -133,6 +145,7 @@
         private System.Windows.Forms.ColumnHeader colDirectory;
         private System.Windows.Forms.ColumnHeader colLife;
         private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Label lblStatus;
     }
 }
 

@@ -85,6 +85,13 @@ namespace JettisonApp
             lstMain.Items.Clear();
         }
 
+        public void updateStatus(string message)
+        {
+            lblStatus.Text = message;
+            var d = DateTime.Now; while (DateTime.Now.Subtract(d).TotalSeconds < 3) { }
+            lblStatus.Text = string.Empty;
+        }
+
         private void btnRegister_Click(object sender, System.EventArgs e)
         {
             Register registerForm = new Register();

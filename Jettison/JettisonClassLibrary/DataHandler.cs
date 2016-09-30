@@ -118,8 +118,7 @@ namespace JettisonClassLibrary
         public void updateSettings(Dictionary<string, bool> settingsFromDialog)
         {
             storedData.Settings = settingsFromDialog;
-            string settingsString = JsonConvert.SerializeObject(settingsFromDialog);
-            File.WriteAllText(settingsFile, settingsString);
+            saveDataFile();
         }
     }
 }
