@@ -70,25 +70,26 @@ namespace JettisonClassLibrary
             DateTime fileDate = File.GetCreationTime(file);
             DateTime now = DateTime.Now;
             TimeSpan span = now.Subtract(fileDate);
+            bool delete = j.Recycle;
 
             // 24 hours
             if (j.MaxLife == 1) {
                 if (span.TotalHours >= 24) {
-                    File.Delete(file);
+                    disposeFile(file, delete);
                 }
             }
 
             // 48 hours
             else if (j.MaxLife == 2) {
                 if (span.TotalHours >= 48) {
-                    File.Delete(file);
+                    disposeFile(file, delete);
                 }
             }
 
             // 72 hours
             else if (j.MaxLife == 3) {
                 if (span.TotalHours >= 72) {
-                    File.Delete(file);
+                    disposeFile(file, delete);
                 }
             }
 
@@ -98,24 +99,32 @@ namespace JettisonClassLibrary
                 // seconds
                 if (j.CustomLifeDuration == 1) {
                     if (span.TotalSeconds >= j.CustomLife) {
-                        File.Delete(file);
-                        //FileOperationAPIWrapper.MoveToRecycleBin(file);
+                        disposeFile(file, delete);
                     }
                 }
 
                 // minutes
                 else if (j.CustomLifeDuration == 2) {
                     if (span.TotalMinutes >= j.CustomLife) {
-                        File.Delete(file);
+                        disposeFile(file, delete);
                     }
                 }
 
                 // hours
                 else if (j.CustomLifeDuration == 3) {
                     if (span.TotalHours >= j.CustomLife) {
-                        File.Delete(file);
+                        disposeFile(file, delete);
                     }
                 }
+            }
+        }
+
+        private static void disposeFile(string file, bool delete)
+        {
+            if (delete) {
+                File.Delete(file);
+            } else {
+                FileOperationAPIWrapper.MoveToRecycleBin(file);
             }
         }
 

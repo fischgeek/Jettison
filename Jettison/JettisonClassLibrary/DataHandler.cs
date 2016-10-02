@@ -28,9 +28,6 @@ namespace JettisonClassLibrary
             if (!File.Exists(dataFile)) {
                 using (File.Create(dataFile)) { }
             }
-            if (!File.Exists(settingsFile)) {
-                using (File.Create(settingsFile)) { }
-            }
 
             string dataFileContents = string.Empty;
             try {

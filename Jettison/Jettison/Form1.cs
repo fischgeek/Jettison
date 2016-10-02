@@ -87,9 +87,12 @@ namespace JettisonApp
 
         public void updateStatus(string message)
         {
+            lblStatus.Visible = true;
             lblStatus.Text = message;
+            WriteLine("before timer");
             var d = DateTime.Now; while (DateTime.Now.Subtract(d).TotalSeconds < 3) { }
-            lblStatus.Text = string.Empty;
+            WriteLine("after timer");
+            lblStatus.Visible = false;
         }
 
         private void btnRegister_Click(object sender, System.EventArgs e)
