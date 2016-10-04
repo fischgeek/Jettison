@@ -90,7 +90,8 @@ namespace JettisonApp
             lblStatus.Visible = true;
             lblStatus.Text = message;
             WriteLine("before timer");
-            var d = DateTime.Now; while (DateTime.Now.Subtract(d).TotalSeconds < 3) { }
+            //var d = DateTime.Now; while (DateTime.Now.Subtract(d).TotalSeconds < 3) { }
+            System.Threading.Thread.Sleep(3000);
             WriteLine("after timer");
             lblStatus.Visible = false;
         }
