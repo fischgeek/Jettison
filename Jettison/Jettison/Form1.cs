@@ -18,6 +18,7 @@ namespace JettisonApp
         DataHandler dh = DataHandler.getInstance();
         ContextMenu contextMenu = new ContextMenu();
         private int btnVariant = 1;
+        NotifyIcon trayIcon = new NotifyIcon();
 
         private static void MonitorThread()
         {
@@ -39,6 +40,10 @@ namespace JettisonApp
             menuDelete.Click += MenuDelete_Click;
             contextMenu.MenuItems.Add(menuEdit);
             contextMenu.MenuItems.Add(menuDelete);
+
+            // tray icon
+            //trayIcon.Icon = SystemIcons.Application;
+            //trayIcon.BalloonTipTitle = "Jettison";
         }
 
         private void MenuDelete_Click(object sender, EventArgs e)
@@ -90,10 +95,18 @@ namespace JettisonApp
             lblStatus.Visible = true;
             lblStatus.Text = message;
             WriteLine("before timer");
-            //var d = DateTime.Now; while (DateTime.Now.Subtract(d).TotalSeconds < 3) { }
-            System.Threading.Thread.Sleep(3000);
+            var d = DateTime.Now; while (DateTime.Now.Subtract(d).TotalSeconds < 3) { }
+            //System.Threading.Thread.Sleep(3000);
             WriteLine("after timer");
             lblStatus.Visible = false;
+        }
+
+        public void showNotification(string message)
+        {
+            trayIcon.BalloonTipText = message;
+            trayIcon.BalloonTipIcon = ToolTipIcon.Info;
+            trayIcon.Visible = true;
+            trayIcon.ShowBalloonTip(3000);
         }
 
         private void btnRegister_Click(object sender, System.EventArgs e)

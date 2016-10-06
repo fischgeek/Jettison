@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
 using static System.Diagnostics.Debug;
+using System.Drawing;
 
 namespace JettisonClassLibrary
 {
@@ -121,10 +122,31 @@ namespace JettisonClassLibrary
 
         private static void disposeFile(string file, bool delete)
         {
+            System.Windows.Forms.NotifyIcon trayIcon = new System.Windows.Forms.NotifyIcon();
+            trayIcon.Icon = SystemIcons.Application;
+            trayIcon.BalloonTipTitle = "Jettison";
+            trayIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            trayIcon.Visible = true;
+            trayIcon.BalloonTipText = String.Format(@"{0} was deleted", file);
+            trayIcon.ShowBalloonTip(3000);
+            string opType = "ERR";
             if (delete) {
                 File.Delete(file);
+                opType = "DEL";
             } else {
                 FileOperationAPIWrapper.MoveToRecycleBin(file);
+                opType = "REC";
+            }
+
+
+            // TODO: check settings first to see if logging is turned on
+            DateTime time = DateTime.Now;
+            string format = "yyyy-MM-dd HH:mm:ss";
+            string log = String.Format(@"[{0}] {1} {2}", time.ToString(format), opType, file);
+            string appdata = Environment.GetEnvironmentVariable("AppData");
+            string logFile = appdata + @"\Jettison\log.txt";
+            using (StreamWriter s = File.AppendText(logFile)) {
+                s.WriteLine(log);
             }
         }
 
