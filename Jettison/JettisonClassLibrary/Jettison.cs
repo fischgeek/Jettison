@@ -138,16 +138,13 @@ namespace JettisonClassLibrary
                 opType = "REC";
             }
 
-
             // TODO: check settings first to see if logging is turned on
             DateTime time = DateTime.Now;
             string format = "yyyy-MM-dd HH:mm:ss";
             string log = String.Format(@"[{0}] {1} {2}", time.ToString(format), opType, file);
             string appdata = Environment.GetEnvironmentVariable("AppData");
             string logFile = appdata + @"\Jettison\log.txt";
-            using (StreamWriter s = File.AppendText(logFile)) {
-                s.WriteLine(log);
-            }
+            File.AppendAllText(logFile, log);
         }
 
         private static void cleanDirectory(string startLocation)
