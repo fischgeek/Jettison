@@ -41,7 +41,7 @@ namespace JettisonClassLibrary
             }
             return returnString;
         }
-
+		
         public static void HandleSettings(Dictionary<string, bool> settings)
         {
             string runningDir = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
