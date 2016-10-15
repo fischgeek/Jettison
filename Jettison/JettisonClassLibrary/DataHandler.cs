@@ -107,6 +107,8 @@ namespace JettisonClassLibrary
             if (storedData.Settings == null || storedData.Settings.Count == 0) {
                 Dictionary<string, bool> firstTimeSettings = new Dictionary<string, bool>();
                 firstTimeSettings["RunOnStartup"] = true;
+                firstTimeSettings["LogHistory"] = false;
+                firstTimeSettings["DisplayAlerts"] = false;
                 updateSettings(firstTimeSettings);
             }
             return storedData.Settings;

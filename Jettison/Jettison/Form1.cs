@@ -22,7 +22,8 @@ namespace JettisonApp
 
         private static void MonitorThread()
         {
-            Jettison.checkJettisons();
+            //Jettison.checkJettisons();
+            JettisonBackground.checkJettisons();
         }
 
         public Form1()

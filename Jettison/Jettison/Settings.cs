@@ -26,6 +26,8 @@ namespace JettisonApp
         {
             Dictionary<string, bool> settings = new Dictionary<string, bool>();
             settings.Add("RunOnStartup", cbxRunOnStartup.Checked);
+            settings.Add("LogHistory", cbxLogHistory.Checked);
+            settings.Add("DisplayAlerts", cbxDisplayMessage.Checked);
             dh.updateSettings(settings);
 
             Jettison.HandleSettings(settings);

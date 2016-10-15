@@ -48,6 +48,7 @@
     <Compile Include="DataHandler.cs" />
     <Compile Include="FileOperationAPIWrapper.cs" />
     <Compile Include="Jettison.cs" />
+    <Compile Include="JettisonBackground.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoredData.cs" />
   </ItemGroup>

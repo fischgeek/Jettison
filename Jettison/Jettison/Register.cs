@@ -76,6 +76,7 @@ namespace JettisonApp
         private void btnRegister_Click(object sender, EventArgs e)
         {
             if (isFormValid()) {
+                //Jettison jettison = Jettison.MakeMeAThing((string alert) => MessageBox.Show(alert));
                 Jettison jettison = new Jettison();
                 jettison.Id = dh.generateNewId();
 
