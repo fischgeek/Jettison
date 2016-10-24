@@ -13,18 +13,6 @@ namespace JettisonClassLibrary
         public static DataHandler dh = DataHandler.getInstance();
         public static Dictionary<string, bool> settings = dh.getSettings();
         public static System.Windows.Forms.NotifyIcon trayIcon = new System.Windows.Forms.NotifyIcon();
-        //private Action<string> Alert;
-
-        //public static Jettison MakeMeAThing(Action<string> Alert)
-        //{
-        //    var j = new Jettison();
-        //    j.Alert = Alert;
-        //    return j;
-        //}
-        //private void IDeletedSomething()
-        //{
-        //    this.Alert("Hello world");
-        //}
 
         public static void checkJettisons()
         {

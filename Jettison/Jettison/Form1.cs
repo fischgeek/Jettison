@@ -19,6 +19,7 @@ namespace JettisonApp
         ContextMenu contextMenu = new ContextMenu();
         private int btnVariant = 1;
         NotifyIcon trayIcon = new NotifyIcon();
+        ContextMenuStrip trayMenu = new ContextMenuStrip();
 
         private static void MonitorThread()
         {
@@ -31,6 +32,7 @@ namespace JettisonApp
             InitializeComponent();
             updateList();
             monitor.Start();
+            
 
             WriteLine(Environment.GetEnvironmentVariable("AppData"));
 
@@ -43,8 +45,34 @@ namespace JettisonApp
             contextMenu.MenuItems.Add(menuDelete);
 
             // tray icon
-            //trayIcon.Icon = SystemIcons.Application;
-            //trayIcon.BalloonTipTitle = "Jettison";
+            trayIcon.Icon = SystemIcons.Application;
+            trayIcon.Text = "Jettison";
+            trayIcon.Visible = true;
+            trayIcon.MouseClick += TrayIcon_MouseClick;
+            
+            // tray menu
+            trayMenu.Items.Add("Exit", null, TrayMenuExit_Click);
+            //trayMenu.MenuItems.Add(new MenuItem("Show", TrayMenuShow_Click));
+        }
+
+        private void TrayIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right) {
+                trayMenu.Show(lstMain, PointToClient(Cursor.Position));
+            }
+        }
+
+        private void TrayMenuShow_Click(object sender, EventArgs e)
+        {
+            Form1 form = new Form1();
+            form.Show();
+        }
+
+        private void TrayMenuExit_Click(object sender, EventArgs e)
+        {
+            monitor.Abort();
+            trayIcon.Visible = false;
+            Application.Exit();
         }
 
         private void MenuDelete_Click(object sender, EventArgs e)
