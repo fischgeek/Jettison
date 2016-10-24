@@ -29,10 +29,11 @@
         {
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.cbxRunOnStartup = new System.Windows.Forms.CheckBox();
-            this.btnSaveSettings = new System.Windows.Forms.Button();
-            this.btnCancelSettings = new System.Windows.Forms.Button();
             this.cbxLogHistory = new System.Windows.Forms.CheckBox();
             this.cbxDisplayMessage = new System.Windows.Forms.CheckBox();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
+            this.btnCancelSettings = new System.Windows.Forms.Button();
+            this.cbxShowOnStart = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,6 +43,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.Controls.Add(this.cbxRunOnStartup);
+            this.flowLayoutPanel1.Controls.Add(this.cbxShowOnStart);
             this.flowLayoutPanel1.Controls.Add(this.cbxLogHistory);
             this.flowLayoutPanel1.Controls.Add(this.cbxDisplayMessage);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -60,6 +62,26 @@
             this.cbxRunOnStartup.TabIndex = 0;
             this.cbxRunOnStartup.Text = "Run on startup (recommended)";
             this.cbxRunOnStartup.UseVisualStyleBackColor = true;
+            // 
+            // cbxLogHistory
+            // 
+            this.cbxLogHistory.AutoSize = true;
+            this.cbxLogHistory.Location = new System.Drawing.Point(3, 63);
+            this.cbxLogHistory.Name = "cbxLogHistory";
+            this.cbxLogHistory.Size = new System.Drawing.Size(161, 24);
+            this.cbxLogHistory.TabIndex = 1;
+            this.cbxLogHistory.Text = "Save Jettison history";
+            this.cbxLogHistory.UseVisualStyleBackColor = true;
+            // 
+            // cbxDisplayMessage
+            // 
+            this.cbxDisplayMessage.AutoSize = true;
+            this.cbxDisplayMessage.Location = new System.Drawing.Point(3, 93);
+            this.cbxDisplayMessage.Name = "cbxDisplayMessage";
+            this.cbxDisplayMessage.Size = new System.Drawing.Size(312, 24);
+            this.cbxDisplayMessage.TabIndex = 2;
+            this.cbxDisplayMessage.Text = "Display a message when a file is Jettisoned";
+            this.cbxDisplayMessage.UseVisualStyleBackColor = true;
             // 
             // btnSaveSettings
             // 
@@ -85,25 +107,15 @@
             this.btnCancelSettings.UseVisualStyleBackColor = true;
             this.btnCancelSettings.Click += new System.EventHandler(this.btnCancelSettings_Click);
             // 
-            // cbxLogHistory
+            // cbxShowOnStart
             // 
-            this.cbxLogHistory.AutoSize = true;
-            this.cbxLogHistory.Location = new System.Drawing.Point(3, 33);
-            this.cbxLogHistory.Name = "cbxLogHistory";
-            this.cbxLogHistory.Size = new System.Drawing.Size(161, 24);
-            this.cbxLogHistory.TabIndex = 1;
-            this.cbxLogHistory.Text = "Save Jettison history";
-            this.cbxLogHistory.UseVisualStyleBackColor = true;
-            // 
-            // cbxDisplayMessage
-            // 
-            this.cbxDisplayMessage.AutoSize = true;
-            this.cbxDisplayMessage.Location = new System.Drawing.Point(3, 63);
-            this.cbxDisplayMessage.Name = "cbxDisplayMessage";
-            this.cbxDisplayMessage.Size = new System.Drawing.Size(312, 24);
-            this.cbxDisplayMessage.TabIndex = 2;
-            this.cbxDisplayMessage.Text = "Display a message when a file is Jettisoned";
-            this.cbxDisplayMessage.UseVisualStyleBackColor = true;
+            this.cbxShowOnStart.AutoSize = true;
+            this.cbxShowOnStart.Location = new System.Drawing.Point(3, 33);
+            this.cbxShowOnStart.Name = "cbxShowOnStart";
+            this.cbxShowOnStart.Size = new System.Drawing.Size(174, 24);
+            this.cbxShowOnStart.TabIndex = 3;
+            this.cbxShowOnStart.Text = "Show window on start";
+            this.cbxShowOnStart.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -131,5 +143,6 @@
         private System.Windows.Forms.Button btnCancelSettings;
         private System.Windows.Forms.CheckBox cbxLogHistory;
         private System.Windows.Forms.CheckBox cbxDisplayMessage;
+        private System.Windows.Forms.CheckBox cbxShowOnStart;
     }
 }

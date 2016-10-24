@@ -46,6 +46,15 @@ namespace JettisonClassLibrary
             return instance;
         }
 
+        public bool showMainForm()
+        {
+            if (storedData.Settings.ContainsKey("ShowOnStart")) {
+                return storedData.Settings["ShowOnStart"];
+            } else {
+                return true;
+            }
+        }
+
         private void saveDataFile()
         {
             string jsonData = JsonConvert.SerializeObject(storedData);
@@ -107,6 +116,7 @@ namespace JettisonClassLibrary
             if (storedData.Settings == null || storedData.Settings.Count == 0) {
                 Dictionary<string, bool> firstTimeSettings = new Dictionary<string, bool>();
                 firstTimeSettings["RunOnStartup"] = true;
+                firstTimeSettings["ShowOnStart"] = true;
                 firstTimeSettings["LogHistory"] = false;
                 firstTimeSettings["DisplayAlerts"] = false;
                 updateSettings(firstTimeSettings);

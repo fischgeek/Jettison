@@ -23,7 +23,6 @@ namespace JettisonApp
 
         private static void MonitorThread()
         {
-            //Jettison.checkJettisons();
             JettisonBackground.checkJettisons();
         }
 
@@ -32,9 +31,6 @@ namespace JettisonApp
             InitializeComponent();
             updateList();
             monitor.Start();
-            
-
-            WriteLine(Environment.GetEnvironmentVariable("AppData"));
 
             // setup context menu
             MenuItem menuEdit = new MenuItem() { Text = "Edit" };
@@ -53,6 +49,10 @@ namespace JettisonApp
             // tray menu
             trayMenu.Items.Add("Exit", null, TrayMenuExit_Click);
             //trayMenu.MenuItems.Add(new MenuItem("Show", TrayMenuShow_Click));
+
+            if (dh.showMainForm()) {
+                this.Visible = true;
+            }
         }
 
         private void TrayIcon_MouseClick(object sender, MouseEventArgs e)
@@ -70,9 +70,7 @@ namespace JettisonApp
 
         private void TrayMenuExit_Click(object sender, EventArgs e)
         {
-            monitor.Abort();
-            trayIcon.Visible = false;
-            Application.Exit();
+            ExitApp();  
         }
 
         private void MenuDelete_Click(object sender, EventArgs e)
@@ -146,7 +144,7 @@ namespace JettisonApp
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            monitor.Abort();
+            ExitApp();
         }
 
         private void lstMain_MouseClick(object sender, MouseEventArgs e)
@@ -180,6 +178,13 @@ namespace JettisonApp
         {
             Settings settings = new Settings();
             settings.Show();
+        }
+
+        private void ExitApp()
+        {
+            monitor.Abort();
+            trayIcon.Visible = false;
+            Application.Exit();
         }
     }
 }
