@@ -19,7 +19,6 @@ namespace JettisonApp
         ContextMenu contextMenu = new ContextMenu();
         private int btnVariant = 1;
         NotifyIcon trayIcon = new NotifyIcon();
-        ContextMenuStrip trayMenu = new ContextMenuStrip();
 
         private static void MonitorThread()
         {
@@ -44,33 +43,28 @@ namespace JettisonApp
             trayIcon.Icon = SystemIcons.Application;
             trayIcon.Text = "Jettison";
             trayIcon.Visible = true;
-            trayIcon.MouseClick += TrayIcon_MouseClick;
-            
+
             // tray menu
-            trayMenu.Items.Add("Exit", null, TrayMenuExit_Click);
-            //trayMenu.MenuItems.Add(new MenuItem("Show", TrayMenuShow_Click));
+            trayIcon.ContextMenuStrip = new ContextMenuStrip();
+            trayIcon.ContextMenuStrip.AutoClose = true;
+            trayIcon.ContextMenuStrip.ItemClicked += TrayMenu_ItemClicked;
+            trayIcon.ContextMenuStrip.Items.Add("Jettison").Font = new Font(Font, FontStyle.Bold);
+            trayIcon.ContextMenuStrip.Items.Add("Exit");
 
             if (dh.showMainForm()) {
                 this.Visible = true;
             }
         }
 
-        private void TrayIcon_MouseClick(object sender, MouseEventArgs e)
+        private void TrayMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            if (e.Button == MouseButtons.Right) {
-                trayMenu.Show(lstMain, PointToClient(Cursor.Position));
+            string clickedItem = e.ClickedItem.Text;
+            if (clickedItem == "Jettison") {
+                Form1 form = new Form1();
+                form.Show();
+            } else if (clickedItem == "Exit") {
+                ExitApp();
             }
-        }
-
-        private void TrayMenuShow_Click(object sender, EventArgs e)
-        {
-            Form1 form = new Form1();
-            form.Show();
-        }
-
-        private void TrayMenuExit_Click(object sender, EventArgs e)
-        {
-            ExitApp();  
         }
 
         private void MenuDelete_Click(object sender, EventArgs e)
@@ -182,7 +176,7 @@ namespace JettisonApp
 
         private void ExitApp()
         {
-            monitor.Abort();
+            JettisonBackground.PowerOn = false;
             trayIcon.Visible = false;
             Application.Exit();
         }
