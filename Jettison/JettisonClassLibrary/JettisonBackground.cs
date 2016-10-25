@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.IO;
+using static System.Diagnostics.Debug;
 
 namespace JettisonClassLibrary
 {
@@ -13,14 +14,17 @@ namespace JettisonClassLibrary
         public static DataHandler dh = DataHandler.getInstance();
         public static Dictionary<string, bool> settings = dh.getSettings();
         public static System.Windows.Forms.NotifyIcon trayIcon = new System.Windows.Forms.NotifyIcon();
-        public static bool PowerOn;
+        public static bool PowerOn = true;
 
         public static void checkJettisons()
         {
             //DataHandler dh = DataHandler.getInstance();
+            WriteLine("power before loop: " + PowerOn.ToString());
             List<Jettison> all = dh.getAllJettisons();
             while (all != null && all.Count > 0 &&  PowerOn) {
+                WriteLine("power is : " + PowerOn.ToString());
                 foreach (Jettison j in all.ToList()) {
+                    WriteLine("foreaching...");
                     if (System.IO.Directory.Exists(j.Directory)) {
 
                         string[] dirs = System.IO.Directory.GetDirectories(j.Directory);

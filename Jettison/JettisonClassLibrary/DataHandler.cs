@@ -18,9 +18,11 @@ namespace JettisonClassLibrary
         private Dictionary<string, bool> settings = new Dictionary<string, bool>();
         private StoredData storedData = StoredData.getInstance();
         private static DataHandler instance = new DataHandler();
+        public bool instanceLoaded = false;
 
         private DataHandler()
         {
+            instanceLoaded = true;
             string dataDir = appdata + @"\Jettison\";
             if (!Directory.Exists(dataDir)) {
                 Directory.CreateDirectory(dataDir);
@@ -52,6 +54,15 @@ namespace JettisonClassLibrary
                 return storedData.Settings["ShowOnStart"];
             } else {
                 return true;
+            }
+        }
+
+        public bool closeToTray()
+        {
+            if (storedData.Settings.ContainsKey("CloseToTray")) {
+                return storedData.Settings["CloseToTray"];
+            } else {
+                return false;
             }
         }
 
@@ -117,6 +128,7 @@ namespace JettisonClassLibrary
                 Dictionary<string, bool> firstTimeSettings = new Dictionary<string, bool>();
                 firstTimeSettings["RunOnStartup"] = true;
                 firstTimeSettings["ShowOnStart"] = true;
+                firstTimeSettings["CloseToTray"] = false;
                 firstTimeSettings["LogHistory"] = false;
                 firstTimeSettings["DisplayAlerts"] = false;
                 updateSettings(firstTimeSettings);

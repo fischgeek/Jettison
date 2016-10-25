@@ -19,6 +19,7 @@ namespace JettisonApp
         ContextMenu contextMenu = new ContextMenu();
         private int btnVariant = 1;
         NotifyIcon trayIcon = new NotifyIcon();
+        Form1 thisForm;
 
         private static void MonitorThread()
         {
@@ -27,9 +28,11 @@ namespace JettisonApp
 
         public Form1()
         {
+            thisForm = this;
             InitializeComponent();
             updateList();
             monitor.Start();
+            WriteLine(this.WindowState.ToString());
 
             // setup context menu
             MenuItem menuEdit = new MenuItem() { Text = "Edit" };
@@ -40,7 +43,7 @@ namespace JettisonApp
             contextMenu.MenuItems.Add(menuDelete);
 
             // tray icon
-            trayIcon.Icon = SystemIcons.Application;
+            trayIcon.Icon = JettisonApp.Properties.Resources.jettison_32;
             trayIcon.Text = "Jettison";
             trayIcon.Visible = true;
 
@@ -60,8 +63,7 @@ namespace JettisonApp
         {
             string clickedItem = e.ClickedItem.Text;
             if (clickedItem == "Jettison") {
-                Form1 form = new Form1();
-                form.Show();
+                thisForm.Visible = true;
             } else if (clickedItem == "Exit") {
                 ExitApp();
             }
@@ -138,7 +140,12 @@ namespace JettisonApp
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ExitApp();
+            if (dh.closeToTray()) {
+                e.Cancel = true;
+                thisForm.Visible = false;
+            } else {
+                ExitApp();
+            }
         }
 
         private void lstMain_MouseClick(object sender, MouseEventArgs e)
@@ -177,6 +184,7 @@ namespace JettisonApp
         private void ExitApp()
         {
             JettisonBackground.PowerOn = false;
+            this.FormClosing -= Form1_FormClosing;
             trayIcon.Visible = false;
             Application.Exit();
         }

@@ -34,6 +34,7 @@
             this.btnSaveSettings = new System.Windows.Forms.Button();
             this.btnCancelSettings = new System.Windows.Forms.Button();
             this.cbxShowOnStart = new System.Windows.Forms.CheckBox();
+            this.cbxCloseToTray = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +45,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.Controls.Add(this.cbxRunOnStartup);
             this.flowLayoutPanel1.Controls.Add(this.cbxShowOnStart);
+            this.flowLayoutPanel1.Controls.Add(this.cbxCloseToTray);
             this.flowLayoutPanel1.Controls.Add(this.cbxLogHistory);
             this.flowLayoutPanel1.Controls.Add(this.cbxDisplayMessage);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -66,7 +68,7 @@
             // cbxLogHistory
             // 
             this.cbxLogHistory.AutoSize = true;
-            this.cbxLogHistory.Location = new System.Drawing.Point(3, 63);
+            this.cbxLogHistory.Location = new System.Drawing.Point(3, 93);
             this.cbxLogHistory.Name = "cbxLogHistory";
             this.cbxLogHistory.Size = new System.Drawing.Size(161, 24);
             this.cbxLogHistory.TabIndex = 1;
@@ -76,7 +78,7 @@
             // cbxDisplayMessage
             // 
             this.cbxDisplayMessage.AutoSize = true;
-            this.cbxDisplayMessage.Location = new System.Drawing.Point(3, 93);
+            this.cbxDisplayMessage.Location = new System.Drawing.Point(3, 123);
             this.cbxDisplayMessage.Name = "cbxDisplayMessage";
             this.cbxDisplayMessage.Size = new System.Drawing.Size(312, 24);
             this.cbxDisplayMessage.TabIndex = 2;
@@ -117,6 +119,16 @@
             this.cbxShowOnStart.Text = "Show window on start";
             this.cbxShowOnStart.UseVisualStyleBackColor = true;
             // 
+            // cbxCloseToTray
+            // 
+            this.cbxCloseToTray.AutoSize = true;
+            this.cbxCloseToTray.Location = new System.Drawing.Point(3, 63);
+            this.cbxCloseToTray.Name = "cbxCloseToTray";
+            this.cbxCloseToTray.Size = new System.Drawing.Size(235, 24);
+            this.cbxCloseToTray.TabIndex = 4;
+            this.cbxCloseToTray.Text = "Close / Minimize to system tray";
+            this.cbxCloseToTray.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AcceptButton = this.btnSaveSettings;
@@ -144,5 +156,6 @@
         private System.Windows.Forms.CheckBox cbxLogHistory;
         private System.Windows.Forms.CheckBox cbxDisplayMessage;
         private System.Windows.Forms.CheckBox cbxShowOnStart;
+        private System.Windows.Forms.CheckBox cbxCloseToTray;
     }
 }

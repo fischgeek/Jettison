@@ -27,6 +27,9 @@ namespace JettisonApp
             } else {
                 cbxShowOnStart.Checked = true;
             }
+            if (settings.ContainsKey("CloseToTray")) {
+                cbxCloseToTray.Checked = true;
+            }
             if (settings.ContainsKey("LogHistory")) {
                 cbxLogHistory.Checked = settings["LogHistory"];
             }
@@ -40,6 +43,7 @@ namespace JettisonApp
             Dictionary<string, bool> settings = new Dictionary<string, bool>();
             settings.Add("RunOnStartup", cbxRunOnStartup.Checked);
             settings.Add("ShowOnStart", cbxShowOnStart.Checked);
+            settings.Add("CloseToTray", cbxCloseToTray.Checked);
             settings.Add("LogHistory", cbxLogHistory.Checked);
             settings.Add("DisplayAlerts", cbxDisplayMessage.Checked);
             dh.updateSettings(settings);
