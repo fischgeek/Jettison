@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.IO;
 using static System.Diagnostics.Debug;
+using System.Drawing;
 
 namespace JettisonClassLibrary
 {
@@ -16,15 +17,22 @@ namespace JettisonClassLibrary
         public static System.Windows.Forms.NotifyIcon trayIcon = new System.Windows.Forms.NotifyIcon();
         public static bool PowerOn = true;
 
+        public JettisonBackground()
+        {
+            trayIcon.BalloonTipShown += TrayIcon_BalloonTipShown;
+        }
+
+        private void TrayIcon_BalloonTipShown(object sender, EventArgs e)
+        {
+            WriteLine("balloon shown");
+        }
+
         public static void checkJettisons()
         {
             //DataHandler dh = DataHandler.getInstance();
-            WriteLine("power before loop: " + PowerOn.ToString());
             List<Jettison> all = dh.getAllJettisons();
             while (all != null && all.Count > 0 &&  PowerOn) {
-                WriteLine("power is : " + PowerOn.ToString());
                 foreach (Jettison j in all.ToList()) {
-                    WriteLine("foreaching...");
                     if (System.IO.Directory.Exists(j.Directory)) {
 
                         string[] dirs = System.IO.Directory.GetDirectories(j.Directory);
@@ -108,10 +116,7 @@ namespace JettisonClassLibrary
                 opType = "REC";
             }
 
-            bool logOperation = false;
-            logOperation = settings["LogHistory"];
-
-            if (logOperation) {
+            if (settings["LogHistory"] == true) {
                 DateTime time = DateTime.Now;
                 string format = "yyyy-MM-dd HH:mm:ss";
                 string log = String.Format(@"[{0}] {1} {2}", time.ToString(format), opType, file);
@@ -120,6 +125,13 @@ namespace JettisonClassLibrary
                 using (StreamWriter s = File.AppendText(logFile)) {
                     s.WriteLine(log);
                 }
+            }
+
+            if (settings["DisplayAlerts"] == true) {
+                trayIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+                trayIcon.BalloonTipTitle = "Jettison";
+                trayIcon.BalloonTipText = file + " was deleted";
+                trayIcon.ShowBalloonTip(2000);
             }
         }
 

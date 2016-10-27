@@ -59,7 +59,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>jettison-50.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>B72AE0DD6C130278ADFC2A8E1A5DC0C2758BFDA6</ManifestCertificateThumbprint>
@@ -164,9 +165,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="jettison-50.ico" />
-    <None Include="Resources\jettison_icon.bmp" />
-    <None Include="Resources\jettison-32.ico" />
+    <None Include="Resources\jettison.ico" />
     <Content Include="Resources\settings_hover.png" />
     <Content Include="Resources\settings_normal.png" />
   </ItemGroup>

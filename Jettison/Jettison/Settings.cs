@@ -18,6 +18,7 @@ namespace JettisonApp
         public Settings()
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.jettison;
             Dictionary<string, bool> settings = dh.getSettings();
             if (settings.ContainsKey("RunOnStartup")) {
                 cbxRunOnStartup.Checked = settings["RunOnStartup"];

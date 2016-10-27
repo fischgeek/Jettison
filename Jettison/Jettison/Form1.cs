@@ -30,9 +30,10 @@ namespace JettisonApp
         {
             thisForm = this;
             InitializeComponent();
+            this.Icon = Properties.Resources.jettison;
             updateList();
+            JettisonBackground.trayIcon = trayIcon; 
             monitor.Start();
-            WriteLine(this.WindowState.ToString());
 
             // setup context menu
             MenuItem menuEdit = new MenuItem() { Text = "Edit" };
@@ -43,7 +44,7 @@ namespace JettisonApp
             contextMenu.MenuItems.Add(menuDelete);
 
             // tray icon
-            trayIcon.Icon = JettisonApp.Properties.Resources.jettison_32;
+            trayIcon.Icon = JettisonApp.Properties.Resources.jettison;
             trayIcon.Text = "Jettison";
             trayIcon.Visible = true;
 
@@ -85,6 +86,9 @@ namespace JettisonApp
         {
             if (lstMain.SelectedItems.Count > 0) {
                 Jettison jettison = dh.getJettisonByDirectory(lstMain.SelectedItems[0].Text);
+                if (Application.OpenForms["Register"] != null) {
+                    Application.OpenForms["Register"].Close();
+                }
                 Register register = new Register();
                 register.selectedJettison = jettison;
                 register.initEditForm();
@@ -134,8 +138,12 @@ namespace JettisonApp
 
         private void btnRegister_Click(object sender, System.EventArgs e)
         {
-            Register registerForm = new Register();
-            registerForm.Show(this);
+            if (Application.OpenForms["Register"] == null) {
+                Register registerForm = new Register();
+                registerForm.Show();
+            } else {
+                Application.OpenForms["Register"].BringToFront();
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -177,8 +185,12 @@ namespace JettisonApp
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            Settings settings = new Settings();
-            settings.Show();
+            if (Application.OpenForms["Settings"] == null) {
+                Settings settings = new Settings();
+                settings.Show();
+            } else {
+                Application.OpenForms["Settings"].BringToFront();
+            }
         }
 
         private void ExitApp()

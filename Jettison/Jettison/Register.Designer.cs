@@ -27,6 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Register));
             this.label1 = new System.Windows.Forms.Label();
             this.txtDirectory = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
@@ -50,10 +51,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 16);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(176, 25);
+            this.label1.Size = new System.Drawing.Size(139, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Browse for a folder:";
             // 
@@ -62,20 +62,18 @@
             this.txtDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDirectory.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDirectory.Location = new System.Drawing.Point(17, 46);
-            this.txtDirectory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDirectory.Location = new System.Drawing.Point(13, 37);
             this.txtDirectory.Name = "txtDirectory";
-            this.txtDirectory.Size = new System.Drawing.Size(760, 32);
+            this.txtDirectory.Size = new System.Drawing.Size(571, 27);
             this.txtDirectory.TabIndex = 1;
             // 
             // btnBrowse
             // 
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBrowse.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowse.Location = new System.Drawing.Point(787, 44);
-            this.btnBrowse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBrowse.Location = new System.Drawing.Point(590, 36);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(59, 36);
+            this.btnBrowse.Size = new System.Drawing.Size(44, 29);
             this.btnBrowse.TabIndex = 2;
             this.btnBrowse.Text = ". . .";
             this.btnBrowse.UseVisualStyleBackColor = true;
@@ -85,10 +83,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 100);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(9, 81);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(423, 25);
+            this.label2.Size = new System.Drawing.Size(336, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "Allow files to live in this folder for a maximum of:";
             // 
@@ -96,10 +93,9 @@
             // 
             this.rb24Hours.AutoSize = true;
             this.rb24Hours.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rb24Hours.Location = new System.Drawing.Point(4, 0);
-            this.rb24Hours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rb24Hours.Location = new System.Drawing.Point(3, 0);
             this.rb24Hours.Name = "rb24Hours";
-            this.rb24Hours.Size = new System.Drawing.Size(106, 29);
+            this.rb24Hours.Size = new System.Drawing.Size(83, 24);
             this.rb24Hours.TabIndex = 4;
             this.rb24Hours.TabStop = true;
             this.rb24Hours.Text = "24 hours";
@@ -109,10 +105,9 @@
             // 
             this.rb48Hours.AutoSize = true;
             this.rb48Hours.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rb48Hours.Location = new System.Drawing.Point(4, 37);
-            this.rb48Hours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rb48Hours.Location = new System.Drawing.Point(3, 30);
             this.rb48Hours.Name = "rb48Hours";
-            this.rb48Hours.Size = new System.Drawing.Size(106, 29);
+            this.rb48Hours.Size = new System.Drawing.Size(83, 24);
             this.rb48Hours.TabIndex = 5;
             this.rb48Hours.TabStop = true;
             this.rb48Hours.Text = "48 hours";
@@ -122,10 +117,9 @@
             // 
             this.rb72Hours.AutoSize = true;
             this.rb72Hours.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rb72Hours.Location = new System.Drawing.Point(4, 74);
-            this.rb72Hours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rb72Hours.Location = new System.Drawing.Point(3, 60);
             this.rb72Hours.Name = "rb72Hours";
-            this.rb72Hours.Size = new System.Drawing.Size(106, 29);
+            this.rb72Hours.Size = new System.Drawing.Size(83, 24);
             this.rb72Hours.TabIndex = 6;
             this.rb72Hours.TabStop = true;
             this.rb72Hours.Text = "72 hours";
@@ -135,10 +129,9 @@
             // 
             this.rbCustom.AutoSize = true;
             this.rbCustom.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbCustom.Location = new System.Drawing.Point(3, 111);
-            this.rbCustom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbCustom.Location = new System.Drawing.Point(2, 90);
             this.rbCustom.Name = "rbCustom";
-            this.rbCustom.Size = new System.Drawing.Size(97, 29);
+            this.rbCustom.Size = new System.Drawing.Size(77, 24);
             this.rbCustom.TabIndex = 7;
             this.rbCustom.TabStop = true;
             this.rbCustom.Text = "Custom";
@@ -149,10 +142,9 @@
             // 
             this.txtCustomLife.Enabled = false;
             this.txtCustomLife.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCustomLife.Location = new System.Drawing.Point(132, 238);
-            this.txtCustomLife.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCustomLife.Location = new System.Drawing.Point(99, 193);
             this.txtCustomLife.Name = "txtCustomLife";
-            this.txtCustomLife.Size = new System.Drawing.Size(75, 32);
+            this.txtCustomLife.Size = new System.Drawing.Size(57, 27);
             this.txtCustomLife.TabIndex = 8;
             // 
             // rbCustomLifeSeconds
@@ -160,10 +152,9 @@
             this.rbCustomLifeSeconds.AutoSize = true;
             this.rbCustomLifeSeconds.Enabled = false;
             this.rbCustomLifeSeconds.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbCustomLifeSeconds.Location = new System.Drawing.Point(224, 239);
-            this.rbCustomLifeSeconds.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbCustomLifeSeconds.Location = new System.Drawing.Point(168, 194);
             this.rbCustomLifeSeconds.Name = "rbCustomLifeSeconds";
-            this.rbCustomLifeSeconds.Size = new System.Drawing.Size(103, 29);
+            this.rbCustomLifeSeconds.Size = new System.Drawing.Size(82, 24);
             this.rbCustomLifeSeconds.TabIndex = 9;
             this.rbCustomLifeSeconds.TabStop = true;
             this.rbCustomLifeSeconds.Text = "Seconds";
@@ -174,10 +165,9 @@
             this.rbCustomLifeMinutes.AutoSize = true;
             this.rbCustomLifeMinutes.Enabled = false;
             this.rbCustomLifeMinutes.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbCustomLifeMinutes.Location = new System.Drawing.Point(341, 239);
-            this.rbCustomLifeMinutes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbCustomLifeMinutes.Location = new System.Drawing.Point(256, 194);
             this.rbCustomLifeMinutes.Name = "rbCustomLifeMinutes";
-            this.rbCustomLifeMinutes.Size = new System.Drawing.Size(101, 29);
+            this.rbCustomLifeMinutes.Size = new System.Drawing.Size(79, 24);
             this.rbCustomLifeMinutes.TabIndex = 10;
             this.rbCustomLifeMinutes.TabStop = true;
             this.rbCustomLifeMinutes.Text = "Minutes";
@@ -188,10 +178,9 @@
             this.rbCustomLifeHours.AutoSize = true;
             this.rbCustomLifeHours.Enabled = false;
             this.rbCustomLifeHours.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbCustomLifeHours.Location = new System.Drawing.Point(455, 239);
-            this.rbCustomLifeHours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbCustomLifeHours.Location = new System.Drawing.Point(341, 194);
             this.rbCustomLifeHours.Name = "rbCustomLifeHours";
-            this.rbCustomLifeHours.Size = new System.Drawing.Size(83, 29);
+            this.rbCustomLifeHours.Size = new System.Drawing.Size(66, 24);
             this.rbCustomLifeHours.TabIndex = 11;
             this.rbCustomLifeHours.TabStop = true;
             this.rbCustomLifeHours.Text = "Hours";
@@ -200,10 +189,9 @@
             // btnRegister
             // 
             this.btnRegister.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(16, 386);
-            this.btnRegister.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRegister.Location = new System.Drawing.Point(12, 314);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(112, 39);
+            this.btnRegister.Size = new System.Drawing.Size(84, 32);
             this.btnRegister.TabIndex = 12;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = true;
@@ -215,10 +203,9 @@
             this.panel1.Controls.Add(this.rb48Hours);
             this.panel1.Controls.Add(this.rb72Hours);
             this.panel1.Controls.Add(this.rbCustom);
-            this.panel1.Location = new System.Drawing.Point(17, 128);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(13, 104);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(113, 140);
+            this.panel1.Size = new System.Drawing.Size(85, 114);
             this.panel1.TabIndex = 13;
             // 
             // lblError
@@ -226,10 +213,9 @@
             this.lblError.AutoSize = true;
             this.lblError.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(136, 394);
-            this.lblError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblError.Location = new System.Drawing.Point(102, 320);
             this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(159, 25);
+            this.lblError.Size = new System.Drawing.Size(124, 20);
             this.lblError.TabIndex = 14;
             this.lblError.Text = "error placeholder";
             this.lblError.Visible = false;
@@ -238,20 +224,19 @@
             // 
             this.cbxRecycleFiles.AutoSize = true;
             this.cbxRecycleFiles.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxRecycleFiles.Location = new System.Drawing.Point(16, 315);
-            this.cbxRecycleFiles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxRecycleFiles.Location = new System.Drawing.Point(12, 256);
             this.cbxRecycleFiles.Name = "cbxRecycleFiles";
-            this.cbxRecycleFiles.Size = new System.Drawing.Size(430, 29);
+            this.cbxRecycleFiles.Size = new System.Drawing.Size(343, 24);
             this.cbxRecycleFiles.TabIndex = 15;
             this.cbxRecycleFiles.Text = "Send files to the Recycle bin instead of deleting";
             this.cbxRecycleFiles.UseVisualStyleBackColor = true;
             // 
             // Register
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(861, 441);
+            this.ClientSize = new System.Drawing.Size(646, 358);
             this.Controls.Add(this.cbxRecycleFiles);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.panel1);
@@ -264,7 +249,7 @@
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.txtDirectory);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Register";
             this.Text = "Register";
             this.panel1.ResumeLayout(false);

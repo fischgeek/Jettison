@@ -27,14 +27,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.cbxRunOnStartup = new System.Windows.Forms.CheckBox();
+            this.cbxShowOnStart = new System.Windows.Forms.CheckBox();
+            this.cbxCloseToTray = new System.Windows.Forms.CheckBox();
             this.cbxLogHistory = new System.Windows.Forms.CheckBox();
             this.cbxDisplayMessage = new System.Windows.Forms.CheckBox();
             this.btnSaveSettings = new System.Windows.Forms.Button();
             this.btnCancelSettings = new System.Windows.Forms.Button();
-            this.cbxShowOnStart = new System.Windows.Forms.CheckBox();
-            this.cbxCloseToTray = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +65,26 @@
             this.cbxRunOnStartup.TabIndex = 0;
             this.cbxRunOnStartup.Text = "Run on startup (recommended)";
             this.cbxRunOnStartup.UseVisualStyleBackColor = true;
+            // 
+            // cbxShowOnStart
+            // 
+            this.cbxShowOnStart.AutoSize = true;
+            this.cbxShowOnStart.Location = new System.Drawing.Point(3, 33);
+            this.cbxShowOnStart.Name = "cbxShowOnStart";
+            this.cbxShowOnStart.Size = new System.Drawing.Size(174, 24);
+            this.cbxShowOnStart.TabIndex = 3;
+            this.cbxShowOnStart.Text = "Show window on start";
+            this.cbxShowOnStart.UseVisualStyleBackColor = true;
+            // 
+            // cbxCloseToTray
+            // 
+            this.cbxCloseToTray.AutoSize = true;
+            this.cbxCloseToTray.Location = new System.Drawing.Point(3, 63);
+            this.cbxCloseToTray.Name = "cbxCloseToTray";
+            this.cbxCloseToTray.Size = new System.Drawing.Size(235, 24);
+            this.cbxCloseToTray.TabIndex = 4;
+            this.cbxCloseToTray.Text = "Close / Minimize to system tray";
+            this.cbxCloseToTray.UseVisualStyleBackColor = true;
             // 
             // cbxLogHistory
             // 
@@ -109,26 +130,6 @@
             this.btnCancelSettings.UseVisualStyleBackColor = true;
             this.btnCancelSettings.Click += new System.EventHandler(this.btnCancelSettings_Click);
             // 
-            // cbxShowOnStart
-            // 
-            this.cbxShowOnStart.AutoSize = true;
-            this.cbxShowOnStart.Location = new System.Drawing.Point(3, 33);
-            this.cbxShowOnStart.Name = "cbxShowOnStart";
-            this.cbxShowOnStart.Size = new System.Drawing.Size(174, 24);
-            this.cbxShowOnStart.TabIndex = 3;
-            this.cbxShowOnStart.Text = "Show window on start";
-            this.cbxShowOnStart.UseVisualStyleBackColor = true;
-            // 
-            // cbxCloseToTray
-            // 
-            this.cbxCloseToTray.AutoSize = true;
-            this.cbxCloseToTray.Location = new System.Drawing.Point(3, 63);
-            this.cbxCloseToTray.Name = "cbxCloseToTray";
-            this.cbxCloseToTray.Size = new System.Drawing.Size(235, 24);
-            this.cbxCloseToTray.TabIndex = 4;
-            this.cbxCloseToTray.Text = "Close / Minimize to system tray";
-            this.cbxCloseToTray.UseVisualStyleBackColor = true;
-            // 
             // Settings
             // 
             this.AcceptButton = this.btnSaveSettings;
@@ -139,6 +140,7 @@
             this.Controls.Add(this.btnCancelSettings);
             this.Controls.Add(this.btnSaveSettings);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Settings";
             this.Text = "Settings";
             this.flowLayoutPanel1.ResumeLayout(false);

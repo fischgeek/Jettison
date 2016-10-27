@@ -23,6 +23,7 @@ namespace JettisonApp
         public Register()
         {
             InitializeComponent();
+            this.Icon = Properties.Resources.jettison;
 
             // setup folder dialog
             sfd.FileOk += Sfd_FileOk;

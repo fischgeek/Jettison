@@ -63,9 +63,9 @@ namespace JettisonApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon jettison_32 {
+        internal static System.Drawing.Icon jettison {
             get {
-                object obj = ResourceManager.GetObject("jettison_32", resourceCulture);
+                object obj = ResourceManager.GetObject("jettison", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
