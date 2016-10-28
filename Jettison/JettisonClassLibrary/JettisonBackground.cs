@@ -17,21 +17,11 @@ namespace JettisonClassLibrary
         public static System.Windows.Forms.NotifyIcon trayIcon = new System.Windows.Forms.NotifyIcon();
         public static bool PowerOn = true;
 
-        public JettisonBackground()
-        {
-            trayIcon.BalloonTipShown += TrayIcon_BalloonTipShown;
-        }
-
-        private void TrayIcon_BalloonTipShown(object sender, EventArgs e)
-        {
-            WriteLine("balloon shown");
-        }
-
         public static void checkJettisons()
         {
             //DataHandler dh = DataHandler.getInstance();
             List<Jettison> all = dh.getAllJettisons();
-            while (all != null && all.Count > 0 &&  PowerOn) {
+            while (all != null && all.Count > 0 && PowerOn) {
                 foreach (Jettison j in all.ToList()) {
                     if (System.IO.Directory.Exists(j.Directory)) {
 
