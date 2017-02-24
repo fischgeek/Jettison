@@ -23,10 +23,10 @@ namespace JettisonClassLibrary
             List<Jettison> all = dh.getAllJettisons();
             while (all != null && all.Count > 0 && PowerOn) {
                 foreach (Jettison j in all.ToList()) {
-                    if (System.IO.Directory.Exists(j.Directory)) {
+                    if (Directory.Exists(j.Directory)) {
 
-                        string[] dirs = System.IO.Directory.GetDirectories(j.Directory);
-                        string[] files = System.IO.Directory.GetFiles(j.Directory, "*.*", SearchOption.AllDirectories);
+                        string[] dirs = Directory.GetDirectories(j.Directory);
+                        string[] files = Directory.GetFiles(j.Directory, "*.*", SearchOption.AllDirectories);
 
                         // first, check and remove files in all directories if necessary
                         foreach (string file in files) {
@@ -43,10 +43,10 @@ namespace JettisonClassLibrary
 
         private static void checkFile(Jettison j, string file)
         {
-            DateTime fileDate = File.GetCreationTime(file);
+            DateTime fileDate = File.GetLastAccessTime(file);
             DateTime now = DateTime.Now;
             TimeSpan span = now.Subtract(fileDate);
-            bool delete = j.Recycle;
+            bool delete = !j.Recycle;
 
             // 24 hours
             if (j.MaxLife == 1) {
@@ -112,6 +112,12 @@ namespace JettisonClassLibrary
                 string log = String.Format(@"[{0}] {1} {2}", time.ToString(format), opType, file);
                 string appdata = Environment.GetEnvironmentVariable("AppData");
                 string logFile = appdata + @"\Jettison\log.txt";
+                FileInfo logInfo = new FileInfo(logFile);
+                if (getSizeInMb(logInfo.Length) >= 100) {
+                    File.Delete(logFile);
+                    var l = File.Create(logFile);
+                    l.Close();
+                }
                 using (StreamWriter s = File.AppendText(logFile)) {
                     s.WriteLine(log);
                 }
@@ -123,6 +129,11 @@ namespace JettisonClassLibrary
                 trayIcon.BalloonTipText = file + " was deleted";
                 trayIcon.ShowBalloonTip(2000);
             }
+        }
+
+        private static long getSizeInMb(long size)
+        {
+            return size / 1024;
         }
 
         private static void cleanDirectory(string startLocation)
