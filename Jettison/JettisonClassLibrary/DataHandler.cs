@@ -141,6 +141,22 @@ namespace JettisonClassLibrary
             storedData.Settings = settingsFromDialog;
             saveDataFile();
         }
+
+        public JettisonFile addFileToJettison(Jettison jettison, string file)
+        {
+            JettisonFile newFile = new JettisonFile();
+            newFile.FullPath = file;
+            newFile.DropTime = DateTime.Now;
+            jettison.JettisonFiles.Add(newFile);
+            saveDataFile();
+            return newFile;
+        }
+
+        public void removeFileFromJettison(Jettison j, string file)
+        {
+            j.JettisonFiles.Remove(j.JettisonFiles.First(x => x.FullPath == file));
+            saveDataFile();
+        }
     }
 }
 

@@ -44,6 +44,14 @@ namespace JettisonClassLibrary
         private static void checkFile(Jettison j, string file)
         {
             DateTime fileDate = File.GetLastAccessTime(file);
+            if (j.JettisonFiles == null) {
+                j.JettisonFiles = new List<JettisonFile>();
+            }
+            JettisonFile jFile = j.JettisonFiles.Where(x => x.FullPath == file).FirstOrDefault();
+            if (jFile == null) {
+                jFile = dh.addFileToJettison(j, file);
+            }
+            fileDate = jFile.DropTime;
             DateTime now = DateTime.Now;
             TimeSpan span = now.Subtract(fileDate);
             bool delete = !j.Recycle;
@@ -51,21 +59,21 @@ namespace JettisonClassLibrary
             // 24 hours
             if (j.MaxLife == 1) {
                 if (span.TotalHours >= 24) {
-                    disposeFile(file, delete);
+                    disposeFile(j, file, delete);
                 }
             }
 
             // 48 hours
             else if (j.MaxLife == 2) {
                 if (span.TotalHours >= 48) {
-                    disposeFile(file, delete);
+                    disposeFile(j, file, delete);
                 }
             }
 
             // 72 hours
             else if (j.MaxLife == 3) {
                 if (span.TotalHours >= 72) {
-                    disposeFile(file, delete);
+                    disposeFile(j, file, delete);
                 }
             }
 
@@ -75,27 +83,27 @@ namespace JettisonClassLibrary
                 // seconds
                 if (j.CustomLifeDuration == 1) {
                     if (span.TotalSeconds >= j.CustomLife) {
-                        disposeFile(file, delete);
+                        disposeFile(j, file, delete);
                     }
                 }
 
                 // minutes
                 else if (j.CustomLifeDuration == 2) {
                     if (span.TotalMinutes >= j.CustomLife) {
-                        disposeFile(file, delete);
+                        disposeFile(j, file, delete);
                     }
                 }
 
                 // hours
                 else if (j.CustomLifeDuration == 3) {
                     if (span.TotalHours >= j.CustomLife) {
-                        disposeFile(file, delete);
+                        disposeFile(j, file, delete);
                     }
                 }
             }
         }
 
-        private static void disposeFile(string file, bool delete)
+        private static void disposeFile(Jettison j, string file, bool delete)
         {
             string opType = "ERR";
             if (delete) {
@@ -105,6 +113,7 @@ namespace JettisonClassLibrary
                 FileOperationAPIWrapper.MoveToRecycleBin(file);
                 opType = "REC";
             }
+            dh.removeFileFromJettison(j, file);
 
             if (settings["LogHistory"] == true) {
                 DateTime time = DateTime.Now;

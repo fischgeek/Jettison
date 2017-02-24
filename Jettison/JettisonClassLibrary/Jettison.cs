@@ -18,6 +18,7 @@ namespace JettisonClassLibrary
         public int CustomLife { get; set; }
         public int CustomLifeDuration { get; set; }
         public bool Recycle { get; set; }
+        public List<JettisonFile> JettisonFiles { get; set; }
 
         public static string getLifeText(Jettison jettison)
         {
