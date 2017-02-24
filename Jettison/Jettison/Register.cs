@@ -119,7 +119,7 @@ namespace JettisonApp
 
                 Form1 form = Application.OpenForms["Form1"] as Form1;
                 form.updateList();
-                MessageBox.Show(message, "Jettison");
+                //MessageBox.Show(message, "Jettison");
                 this.Close();
             }
         }
