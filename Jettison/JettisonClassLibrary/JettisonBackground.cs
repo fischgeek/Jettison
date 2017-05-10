@@ -107,11 +107,19 @@ namespace JettisonClassLibrary
         {
             string opType = "ERR";
             if (delete) {
-                File.Delete(file);
-                opType = "DEL";
+                try {
+                    File.Delete(file);
+                    opType = "DEL";
+                } catch (Exception) {
+                    opType = "UNABLE TO DELETE FILE";
+                }
             } else {
-                FileOperationAPIWrapper.MoveToRecycleBin(file);
-                opType = "REC";
+                try {
+                    FileOperationAPIWrapper.MoveToRecycleBin(file);
+                    opType = "REC";
+                } catch (Exception) {
+                    opType = "UNABLE TO RECYCLE FILE";
+                }
             }
             dh.removeFileFromJettison(j, file);
 

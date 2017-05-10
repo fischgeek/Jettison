@@ -30,36 +30,25 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnRegister = new System.Windows.Forms.Button();
             this.lstMain = new System.Windows.Forms.ListView();
             this.colDirectory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colLife = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSettings = new System.Windows.Forms.Button();
-            this.lblStatus = new System.Windows.Forms.Label();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(16, 11);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Location = new System.Drawing.Point(9, 11);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(138, 50);
+            this.lblTitle.Size = new System.Drawing.Size(97, 50);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Jettison";
-            // 
-            // btnRegister
-            // 
-            this.btnRegister.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(16, 70);
-            this.btnRegister.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(215, 44);
-            this.btnRegister.TabIndex = 1;
-            this.btnRegister.Text = "Register a directory";
-            this.btnRegister.UseVisualStyleBackColor = true;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            this.lblTitle.Text = "Jettis";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lstMain
             // 
@@ -71,10 +60,10 @@
             this.colDirectory,
             this.colLife});
             this.lstMain.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstMain.Location = new System.Drawing.Point(16, 122);
-            this.lstMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstMain.Location = new System.Drawing.Point(13, 65);
+            this.lstMain.Margin = new System.Windows.Forms.Padding(4);
             this.lstMain.Name = "lstMain";
-            this.lstMain.Size = new System.Drawing.Size(826, 360);
+            this.lstMain.Size = new System.Drawing.Size(829, 417);
             this.lstMain.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lstMain.TabIndex = 2;
             this.lstMain.UseCompatibleStateImageBehavior = false;
@@ -91,7 +80,6 @@
             // 
             // btnSettings
             // 
-            this.btnSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSettings.BackColor = System.Drawing.Color.Transparent;
             this.btnSettings.BackgroundImage = global::JettisonApp.Properties.Resources.settings_normal;
             this.btnSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -101,10 +89,10 @@
             this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Location = new System.Drawing.Point(787, 11);
-            this.btnSettings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSettings.Location = new System.Drawing.Point(99, 22);
+            this.btnSettings.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(53, 49);
+            this.btnSettings.Size = new System.Drawing.Size(36, 36);
             this.btnSettings.TabIndex = 3;
             this.btnSettings.TabStop = false;
             this.btnSettings.UseVisualStyleBackColor = true;
@@ -114,16 +102,42 @@
             this.btnSettings.MouseLeave += new System.EventHandler(this.btnSettings_MouseLeave);
             this.btnSettings.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnSettings_MouseUp);
             // 
-            // lblStatus
+            // btnRegister
             // 
-            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblStatus.Location = new System.Drawing.Point(239, 98);
-            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(600, 16);
-            this.lblStatus.TabIndex = 4;
-            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRegister.BackColor = System.Drawing.Color.Transparent;
+            this.btnRegister.BackgroundImage = global::JettisonApp.Properties.Resources.add_normal;
+            this.btnRegister.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegister.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnRegister.FlatAppearance.BorderSize = 0;
+            this.btnRegister.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRegister.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegister.Location = new System.Drawing.Point(806, 21);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(36, 36);
+            this.btnRegister.TabIndex = 5;
+            this.btnRegister.TabStop = false;
+            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            this.btnRegister.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRegister_MouseDown);
+            this.btnRegister.MouseEnter += new System.EventHandler(this.btnRegister_MouseEnter);
+            this.btnRegister.MouseLeave += new System.EventHandler(this.btnRegister_MouseLeave);
+            this.btnRegister.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnRegister_MouseUp);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Light", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(127, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 50);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "n";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Form1
             // 
@@ -132,13 +146,13 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(859, 497);
-            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnSettings);
-            this.Controls.Add(this.lstMain);
-            this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.btnRegister);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lstMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Jettison";
@@ -151,12 +165,12 @@
         #endregion
 
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.ListView lstMain;
         private System.Windows.Forms.ColumnHeader colDirectory;
         private System.Windows.Forms.ColumnHeader colLife;
         private System.Windows.Forms.Button btnSettings;
-        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.Label label1;
     }
 }
 

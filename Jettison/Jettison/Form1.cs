@@ -119,13 +119,13 @@ namespace JettisonApp
 
         public void updateStatus(string message)
         {
-            lblStatus.Visible = true;
-            lblStatus.Text = message;
+            //lblStatus.Visible = true;
+            //lblStatus.Text = message;
             WriteLine("before timer");
             var d = DateTime.Now; while (DateTime.Now.Subtract(d).TotalSeconds < 3) { }
             //System.Threading.Thread.Sleep(3000);
             WriteLine("after timer");
-            lblStatus.Visible = false;
+            //lblStatus.Visible = false;
         }
 
         public void showNotification(string message)
@@ -134,16 +134,6 @@ namespace JettisonApp
             trayIcon.BalloonTipIcon = ToolTipIcon.Info;
             trayIcon.Visible = true;
             trayIcon.ShowBalloonTip(3000);
-        }
-
-        private void btnRegister_Click(object sender, System.EventArgs e)
-        {
-            if (Application.OpenForms["Register"] == null) {
-                Register registerForm = new Register();
-                registerForm.Show();
-            } else {
-                Application.OpenForms["Register"].BringToFront();
-            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -183,6 +173,26 @@ namespace JettisonApp
             btnSettings.BackgroundImage = Properties.Resources.settings_normal;
         }
 
+        private void btnRegister_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnRegister.Size = new Size(btnRegister.Size.Width - btnVariant, btnRegister.Size.Height - btnVariant);
+        }
+
+        private void btnRegister_MouseUp(object sender, MouseEventArgs e)
+        {
+            btnRegister.Size = new Size(btnRegister.Size.Width + btnVariant, btnRegister.Size.Height + btnVariant);
+        }
+
+        private void btnRegister_MouseEnter(object sender, EventArgs e)
+        {
+            btnRegister.BackgroundImage = Properties.Resources.add_hover;
+        }
+
+        private void btnRegister_MouseLeave(object sender, EventArgs e)
+        {
+            btnRegister.BackgroundImage = Properties.Resources.add_normal;
+        }
+
         private void btnSettings_Click(object sender, EventArgs e)
         {
             if (Application.OpenForms["Settings"] == null) {
@@ -190,6 +200,16 @@ namespace JettisonApp
                 settings.Show();
             } else {
                 Application.OpenForms["Settings"].BringToFront();
+            }
+        }
+
+        private void btnRegister_Click(object sender, System.EventArgs e)
+        {
+            if (Application.OpenForms["Register"] == null) {
+                Register registerForm = new Register();
+                registerForm.Show();
+            } else {
+                Application.OpenForms["Register"].BringToFront();
             }
         }
 

@@ -32,7 +32,7 @@
     <SuiteName>Jettison</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -164,9 +164,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\settings_normal.png" />
     <None Include="Resources\jettison.ico" />
-    <Content Include="Resources\settings_hover.png" />
-    <Content Include="Resources\settings_normal.png" />
+    <None Include="Resources\add_hover.png" />
+    <None Include="Resources\add_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
