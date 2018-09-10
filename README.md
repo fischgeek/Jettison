@@ -11,4 +11,4 @@ Each file is treated individually based on when it was introduced into the targe
 * Display a message when a file is Jettisoned
 
 ## Support
-Please feel free to [drop me a line](mailto:fischgeek@gmail.com) or [submit an Issue](url=https://github.com/fischgeek/Jettison/issues)
+Please feel free to drop me a line or [submit an Issue](url=https://github.com/fischgeek/Jettison/issues)
