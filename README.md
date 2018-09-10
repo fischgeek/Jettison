@@ -17,3 +17,4 @@ Each file is treated individually based on when it was introduced into the targe
 
 ## Support
 Please feel free to drop me a line or [submit an Issue](url=https://github.com/fischgeek/Jettison/issues)
+
