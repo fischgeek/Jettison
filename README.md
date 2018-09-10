@@ -1,3 +1,8 @@
+# Download Jettison
+You can view the source and download it above, or download the installer below.
+
+### [![Download Jettison](/docs/download.png)](http://fischgeek.com/tools/jettison)
+
 ## File Life Options
 Each file is treated individually based on when it was introduced into the target directory.
 * Quickly choose 24, 48, or 72 hour life spans or use the Custom option to specify your own time frame(s)
