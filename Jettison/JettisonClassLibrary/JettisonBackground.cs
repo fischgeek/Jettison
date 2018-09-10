@@ -124,20 +124,7 @@ namespace JettisonClassLibrary
             dh.removeFileFromJettison(j, file);
 
             if (settings["LogHistory"] == true) {
-                DateTime time = DateTime.Now;
-                string format = "yyyy-MM-dd HH:mm:ss";
-                string log = String.Format(@"[{0}] {1} {2}", time.ToString(format), opType, file);
-                string appdata = Environment.GetEnvironmentVariable("AppData");
-                string logFile = appdata + @"\Jettison\log.txt";
-                FileInfo logInfo = new FileInfo(logFile);
-                if (getSizeInMb(logInfo.Length) >= 100) {
-                    File.Delete(logFile);
-                    var l = File.Create(logFile);
-                    l.Close();
-                }
-                using (StreamWriter s = File.AppendText(logFile)) {
-                    s.WriteLine(log);
-                }
+				JFLog.Log(opType, file);
             }
 
             if (settings["DisplayAlerts"] == true) {
@@ -146,11 +133,6 @@ namespace JettisonClassLibrary
                 trayIcon.BalloonTipText = file + " was deleted";
                 trayIcon.ShowBalloonTip(2000);
             }
-        }
-
-        private static long getSizeInMb(long size)
-        {
-            return size / 1024;
         }
 
         private static void cleanDirectory(string startLocation)

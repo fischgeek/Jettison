@@ -25,10 +25,18 @@ namespace JettisonClassLibrary
             instanceLoaded = true;
             string dataDir = appdata + @"\Jettison\";
             if (!Directory.Exists(dataDir)) {
-                Directory.CreateDirectory(dataDir);
+				try {
+					Directory.CreateDirectory(dataDir);
+				} catch {
+					throw new Exception("Failed to create directory");
+				}
             }
             if (!File.Exists(dataFile)) {
-                using (File.Create(dataFile)) { }
+				try {
+					using (File.Create(dataFile)) { }
+				} catch {
+					throw new Exception("Failed to create data file.");
+				}
             }
 
             string dataFileContents = string.Empty;
@@ -36,6 +44,7 @@ namespace JettisonClassLibrary
                 dataFileContents = File.ReadAllText(dataFile);
             } catch (Exception ex) {
                 WriteLine(ex.Message);
+				throw new Exception("Failed to read the data file.");
             }
             storedData = JsonConvert.DeserializeObject<StoredData>(dataFileContents);
             if (storedData == null) {
@@ -149,7 +158,8 @@ namespace JettisonClassLibrary
             newFile.DropTime = DateTime.Now;
             jettison.JettisonFiles.Add(newFile);
             saveDataFile();
-            return newFile;
+			JFLog.Log("INFO", file + " was added");
+			return newFile;
         }
 
         public void removeFileFromJettison(Jettison j, string file)
