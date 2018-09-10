@@ -1,7 +1,7 @@
 # Install Jettison
 You can view the source and download it above, or download the installer below.
 
-### [![Install Jettison](https://github.com/fischgeek/Jettison/blob/master/docs/download.png?raw=true)](http://fischgeek.com/tools/jettison)
+### [![Install Jettison](https://github.com/fischgeek/Jettison/blob/master/docs/download.png?raw=true)](http://fischgeek.com/tools/jettison/JettisonSetup.zip)
 
 ## File Life Options
 Each file is treated individually based on when it was introduced into the target directory.
