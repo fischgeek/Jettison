@@ -20,21 +20,26 @@ namespace JettisonApp
             InitializeComponent();
             this.Icon = Properties.Resources.jettison;
             Dictionary<string, bool> settings = dh.GetSettings();
-            if (settings.ContainsKey("RunOnStartup")) {
+            if (settings.ContainsKey("RunOnStartup"))
+            {
                 cbxRunOnStartup.Checked = settings["RunOnStartup"];
             }
-            if (settings.ContainsKey("ShowOnStart")) {
+            if (settings.ContainsKey("ShowOnStart"))
+            {
                 cbxShowOnStart.Checked = settings["ShowOnStart"];
             } else {
                 cbxShowOnStart.Checked = true;
             }
-            if (settings.ContainsKey("CloseToTray")) {
+            if (settings.ContainsKey("CloseToTray"))
+            {
                 cbxCloseToTray.Checked = true;
             }
-            if (settings.ContainsKey("LogHistory")) {
+            if (settings.ContainsKey("LogHistory"))
+            {
                 cbxLogHistory.Checked = settings["LogHistory"];
             }
-            if (settings.ContainsKey("DisplayAlerts")) {
+            if (settings.ContainsKey("DisplayAlerts"))
+            {
                 cbxDisplayMessage.Checked = settings["DisplayAlerts"];
             }
         }

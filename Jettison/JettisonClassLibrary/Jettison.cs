@@ -23,19 +23,26 @@ namespace JettisonClassLibrary
         public static string GetLifeText(Jettison jettison)
         {
             string returnString = string.Empty;
-            if (jettison.MaxLife == 1) {
+            if (jettison.MaxLife == 1)
+            {
                 returnString = "24 hours";
-            } else if (jettison.MaxLife == 2) {
+            } else if (jettison.MaxLife == 2)
+            {
                 returnString = "48 hours";
-            } else if (jettison.MaxLife == 3) {
+            } else if (jettison.MaxLife == 3)
+            {
                 returnString = "72 hours";
-            } else if (jettison.MaxLife == 4) {
+            } else if (jettison.MaxLife == 4)
+            {
                 string customLife = jettison.CustomLife.ToString();
-                if (jettison.CustomLifeDuration == 1) {
+                if (jettison.CustomLifeDuration == 1)
+                {
                     customLife += " seconds";
-                } else if (jettison.CustomLifeDuration == 2) {
+                } else if (jettison.CustomLifeDuration == 2)
+                {
                     customLife += " minutes";
-                } else if (jettison.CustomLifeDuration == 3) {
+                } else if (jettison.CustomLifeDuration == 3)
+                {
                     customLife += " hours";
                 }
                 returnString = customLife;
@@ -49,12 +56,17 @@ namespace JettisonClassLibrary
             string startupDir = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
             string runningFile = Path.Combine(runningDir, "Jettison.exe");
             string shortcut = Path.Combine(startupDir, "Jettison.lnk");
-            if (settings["RunOnStartup"]) {
-                if (!File.Exists(shortcut)) {
+            if (settings["RunOnStartup"])
+            {
+                if (!File.Exists(shortcut))
+                {
                     FileOperationAPIWrapper.CreateShortcut("Jettison", startupDir, runningFile);
                 }
-            } else {
-                if (File.Exists(shortcut)) {
+            }
+            else
+            {
+                if (File.Exists(shortcut))
+                {
                     File.Delete(shortcut);
                 }
             }
