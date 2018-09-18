@@ -51,7 +51,7 @@ namespace JettisonApp
 
             Jettison.HandleSettings(settings);
             this.Close();
-            //Form1 form = Application.OpenForms["Form1"] as Form1;
+            //App form = Application.OpenForms["App"] as App;
             //form.updateStatus("testing");
             //MessageBox.Show("Settings updated!", "Jettison");
         }

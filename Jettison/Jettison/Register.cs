@@ -117,7 +117,7 @@ namespace JettisonApp
                 jettison.Recycle = cbxRecycleFiles.Checked;
                 dh.RegisterDirectory(jettison);
 
-                Form1 form = Application.OpenForms["Form1"] as Form1;
+                App form = Application.OpenForms["App"] as App;
                 form.UpdateList();
                 //MessageBox.Show(message, "Jettison");
                 this.Close();

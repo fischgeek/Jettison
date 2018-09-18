@@ -16,7 +16,7 @@ namespace JettisonApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Form1 form = new Form1();
+            App form = new App();
             Application.Run();
         }
     }

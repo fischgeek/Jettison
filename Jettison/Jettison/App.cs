@@ -12,21 +12,21 @@ using static System.Diagnostics.Debug;
 
 namespace JettisonApp
 {
-    public partial class Form1 : Form
+    public partial class App : Form
     {
         private System.Threading.Thread monitor = new System.Threading.Thread(new System.Threading.ThreadStart(MonitorThread));
         DataHandler dh = DataHandler.GetInstance();
         ContextMenu contextMenu = new ContextMenu();
         private int btnVariant = 1;
         NotifyIcon trayIcon = new NotifyIcon();
-        Form1 thisForm;
+        App thisForm;
 
         private static void MonitorThread()
         {
             JettisonBackground.CheckJettisons();
         }
 
-        public Form1()
+        public App()
         {
             thisForm = this;
             InitializeComponent();
@@ -136,7 +136,7 @@ namespace JettisonApp
             trayIcon.ShowBalloonTip(3000);
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void App_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (dh.CloseToTray()) {
                 e.Cancel = true;
@@ -216,7 +216,7 @@ namespace JettisonApp
         private void ExitApp()
         {
             JettisonBackground.PowerOn = false;
-            this.FormClosing -= Form1_FormClosing;
+            this.FormClosing -= App_FormClosing;
             trayIcon.Visible = false;
             Application.Exit();
         }
