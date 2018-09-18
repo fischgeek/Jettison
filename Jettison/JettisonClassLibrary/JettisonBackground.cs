@@ -12,15 +12,15 @@ namespace JettisonClassLibrary
 {
     public class JettisonBackground
     {
-        public static DataHandler dh = DataHandler.getInstance();
-        public static Dictionary<string, bool> settings = dh.getSettings();
+        public static DataHandler dh = DataHandler.GetInstance();
+        public static Dictionary<string, bool> settings = dh.GetSettings();
         public static System.Windows.Forms.NotifyIcon trayIcon = new System.Windows.Forms.NotifyIcon();
         public static bool PowerOn = true;
 
-        public static void checkJettisons()
+        public static void CheckJettisons()
         {
             //DataHandler dh = DataHandler.getInstance();
-            List<Jettison> all = dh.getAllJettisons();
+            List<Jettison> all = dh.GetAllJettisons();
             while (all != null && all.Count > 0 && PowerOn) {
                 foreach (Jettison j in all.ToList()) {
                     if (Directory.Exists(j.Directory)) {
@@ -30,18 +30,18 @@ namespace JettisonClassLibrary
 
                         // first, check and remove files in all directories if necessary
                         foreach (string file in files) {
-                            checkFile(j, file);
+                            CheckFile(j, file);
                         }
 
                         // next, clean up empty sub directories
-                        cleanDirectory(j.Directory);
+                        CleanDirectory(j.Directory);
                     }
                     Thread.Sleep(1000);
                 }
             }
         }
 
-        private static void checkFile(Jettison j, string file)
+        private static void CheckFile(Jettison j, string file)
         {
             DateTime fileDate = File.GetLastAccessTime(file);
             if (j.JettisonFiles == null) {
@@ -49,7 +49,7 @@ namespace JettisonClassLibrary
             }
             JettisonFile jFile = j.JettisonFiles.Where(x => x.FullPath == file).FirstOrDefault();
             if (jFile == null) {
-                jFile = dh.addFileToJettison(j, file);
+                jFile = dh.AddFileToJettison(j, file);
             }
             fileDate = jFile.DropTime;
             DateTime now = DateTime.Now;
@@ -59,21 +59,21 @@ namespace JettisonClassLibrary
             // 24 hours
             if (j.MaxLife == 1) {
                 if (span.TotalHours >= 24) {
-                    disposeFile(j, file, delete);
+                    DisposeFile(j, file, delete);
                 }
             }
 
             // 48 hours
             else if (j.MaxLife == 2) {
                 if (span.TotalHours >= 48) {
-                    disposeFile(j, file, delete);
+                    DisposeFile(j, file, delete);
                 }
             }
 
             // 72 hours
             else if (j.MaxLife == 3) {
                 if (span.TotalHours >= 72) {
-                    disposeFile(j, file, delete);
+                    DisposeFile(j, file, delete);
                 }
             }
 
@@ -83,27 +83,27 @@ namespace JettisonClassLibrary
                 // seconds
                 if (j.CustomLifeDuration == 1) {
                     if (span.TotalSeconds >= j.CustomLife) {
-                        disposeFile(j, file, delete);
+                        DisposeFile(j, file, delete);
                     }
                 }
 
                 // minutes
                 else if (j.CustomLifeDuration == 2) {
                     if (span.TotalMinutes >= j.CustomLife) {
-                        disposeFile(j, file, delete);
+                        DisposeFile(j, file, delete);
                     }
                 }
 
                 // hours
                 else if (j.CustomLifeDuration == 3) {
                     if (span.TotalHours >= j.CustomLife) {
-                        disposeFile(j, file, delete);
+                        DisposeFile(j, file, delete);
                     }
                 }
             }
         }
 
-        private static void disposeFile(Jettison j, string file, bool delete)
+        private static void DisposeFile(Jettison j, string file, bool delete)
         {
             string opType = "ERR";
             if (delete) {
@@ -121,7 +121,7 @@ namespace JettisonClassLibrary
                     opType = "UNABLE TO RECYCLE FILE";
                 }
             }
-            dh.removeFileFromJettison(j, file);
+            dh.RemoveFileFromJettison(j, file);
 
             if (settings["LogHistory"] == true) {
 				JFLog.Log(opType, file);
@@ -135,11 +135,11 @@ namespace JettisonClassLibrary
             }
         }
 
-        private static void cleanDirectory(string startLocation)
+        private static void CleanDirectory(string startLocation)
         {
             // http://stackoverflow.com/questions/2811509/c-sharp-remove-all-empty-subdirectories
             foreach (var directory in System.IO.Directory.GetDirectories(startLocation)) {
-                cleanDirectory(directory);
+                CleanDirectory(directory);
                 if (System.IO.Directory.GetFiles(directory).Length == 0 && System.IO.Directory.GetDirectories(directory).Length == 0) {
                     System.IO.Directory.Delete(directory, false);
                 }

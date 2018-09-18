@@ -20,7 +20,7 @@ namespace JettisonClassLibrary
         public bool Recycle { get; set; }
         public List<JettisonFile> JettisonFiles { get; set; }
 
-        public static string getLifeText(Jettison jettison)
+        public static string GetLifeText(Jettison jettison)
         {
             string returnString = string.Empty;
             if (jettison.MaxLife == 1) {

@@ -68,7 +68,7 @@
             this.lstMain.TabIndex = 2;
             this.lstMain.UseCompatibleStateImageBehavior = false;
             this.lstMain.View = System.Windows.Forms.View.Details;
-            this.lstMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstMain_MouseClick);
+            this.lstMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LstMain_MouseClick);
             // 
             // colDirectory
             // 
@@ -96,11 +96,11 @@
             this.btnSettings.TabIndex = 3;
             this.btnSettings.TabStop = false;
             this.btnSettings.UseVisualStyleBackColor = true;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
-            this.btnSettings.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSettings_MouseDown);
-            this.btnSettings.MouseEnter += new System.EventHandler(this.btnSettings_MouseEnter);
-            this.btnSettings.MouseLeave += new System.EventHandler(this.btnSettings_MouseLeave);
-            this.btnSettings.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnSettings_MouseUp);
+            this.btnSettings.Click += new System.EventHandler(this.BtnSettings_Click);
+            this.btnSettings.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnSettings_MouseDown);
+            this.btnSettings.MouseEnter += new System.EventHandler(this.BtnSettings_MouseEnter);
+            this.btnSettings.MouseLeave += new System.EventHandler(this.BtnSettings_MouseLeave);
+            this.btnSettings.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnSettings_MouseUp);
             // 
             // btnRegister
             // 
@@ -121,11 +121,11 @@
             this.btnRegister.TabIndex = 5;
             this.btnRegister.TabStop = false;
             this.btnRegister.UseVisualStyleBackColor = true;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
-            this.btnRegister.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRegister_MouseDown);
-            this.btnRegister.MouseEnter += new System.EventHandler(this.btnRegister_MouseEnter);
-            this.btnRegister.MouseLeave += new System.EventHandler(this.btnRegister_MouseLeave);
-            this.btnRegister.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnRegister_MouseUp);
+            this.btnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
+            this.btnRegister.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnRegister_MouseDown);
+            this.btnRegister.MouseEnter += new System.EventHandler(this.BtnRegister_MouseEnter);
+            this.btnRegister.MouseLeave += new System.EventHandler(this.BtnRegister_MouseLeave);
+            this.btnRegister.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnRegister_MouseUp);
             // 
             // label1
             // 

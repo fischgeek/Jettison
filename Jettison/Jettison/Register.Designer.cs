@@ -40,7 +40,7 @@
             this.rbCustomLifeSeconds = new System.Windows.Forms.RadioButton();
             this.rbCustomLifeMinutes = new System.Windows.Forms.RadioButton();
             this.rbCustomLifeHours = new System.Windows.Forms.RadioButton();
-            this.btnRegister = new System.Windows.Forms.Button();
+            this.BtnRegister = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblError = new System.Windows.Forms.Label();
             this.cbxRecycleFiles = new System.Windows.Forms.CheckBox();
@@ -77,7 +77,7 @@
             this.btnBrowse.TabIndex = 2;
             this.btnBrowse.Text = ". . .";
             this.btnBrowse.UseVisualStyleBackColor = true;
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            this.btnBrowse.Click += new System.EventHandler(this.BtnBrowse_Click);
             // 
             // label2
             // 
@@ -136,7 +136,7 @@
             this.rbCustom.TabStop = true;
             this.rbCustom.Text = "Custom";
             this.rbCustom.UseVisualStyleBackColor = true;
-            this.rbCustom.CheckedChanged += new System.EventHandler(this.rbCustom_CheckedChanged);
+            this.rbCustom.CheckedChanged += new System.EventHandler(this.RbCustom_CheckedChanged);
             // 
             // txtCustomLife
             // 
@@ -186,16 +186,16 @@
             this.rbCustomLifeHours.Text = "Hours";
             this.rbCustomLifeHours.UseVisualStyleBackColor = true;
             // 
-            // btnRegister
+            // BtnRegister
             // 
-            this.btnRegister.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.Location = new System.Drawing.Point(12, 314);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(84, 32);
-            this.btnRegister.TabIndex = 12;
-            this.btnRegister.Text = "Register";
-            this.btnRegister.UseVisualStyleBackColor = true;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            this.BtnRegister.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnRegister.Location = new System.Drawing.Point(12, 314);
+            this.BtnRegister.Name = "BtnRegister";
+            this.BtnRegister.Size = new System.Drawing.Size(84, 32);
+            this.BtnRegister.TabIndex = 12;
+            this.BtnRegister.Text = "Register";
+            this.BtnRegister.UseVisualStyleBackColor = true;
+            this.BtnRegister.Click += new System.EventHandler(this.BtnRegister_Click);
             // 
             // panel1
             // 
@@ -240,7 +240,7 @@
             this.Controls.Add(this.cbxRecycleFiles);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnRegister);
+            this.Controls.Add(this.BtnRegister);
             this.Controls.Add(this.rbCustomLifeHours);
             this.Controls.Add(this.rbCustomLifeMinutes);
             this.Controls.Add(this.rbCustomLifeSeconds);
@@ -273,7 +273,7 @@
         private System.Windows.Forms.RadioButton rbCustomLifeSeconds;
         private System.Windows.Forms.RadioButton rbCustomLifeMinutes;
         private System.Windows.Forms.RadioButton rbCustomLifeHours;
-        private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.Button BtnRegister;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.CheckBox cbxRecycleFiles;

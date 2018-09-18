@@ -18,7 +18,7 @@ namespace JettisonClassLibrary
 			string log = String.Format(@"[{0}] {1} {2}", time.ToString(format), type, msg);
 			FileInfo logInfo = new FileInfo(logFile);
 			if (File.Exists(logFile)) {
-				if (getSizeInMb(logInfo.Length) >= 100) {
+				if (GetSizeInMb(logInfo.Length) >= 100) {
 					try {
 						File.Delete(logFile);
 					} catch {
@@ -42,7 +42,7 @@ namespace JettisonClassLibrary
 			}
 		}
 
-		private static long getSizeInMb(long size)
+		private static long GetSizeInMb(long size)
 		{
 			return size / 1024;
 		}

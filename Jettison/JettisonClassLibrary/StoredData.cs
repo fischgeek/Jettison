@@ -14,7 +14,7 @@ namespace JettisonClassLibrary
 
         private StoredData() { }
 
-        public static StoredData getInstance()
+        public static StoredData GetInstance()
         {
             return instance;
         }
