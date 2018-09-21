@@ -18,7 +18,8 @@ namespace JettisonClassLibrary
 			string log = String.Format(@"[{0}] {1} {2}", time.ToString(format), type, msg);
 			FileInfo logInfo = new FileInfo(logFile);
 
-			if (File.Exists(logFile)) {
+			if (File.Exists(logFile))
+            {
 				if (GetSizeInMb(logInfo.Length) >= 100)
                 {
 					try
@@ -28,15 +29,6 @@ namespace JettisonClassLibrary
                     catch
                     {
 						throw new Exception("Failed to delete the log file.");
-					}
-					try
-                    {
-						var l = File.Create(logFile);
-						l.Close();
-					}
-                    catch
-                    {
-						throw new Exception("Failed to create the log file.");
 					}
 				}
 			}
