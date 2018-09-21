@@ -92,7 +92,7 @@ namespace JettisonClassLibrary
 
         private void SaveDataFile()
         {
-            string jsonData = JsonConvert.SerializeObject(storedData);
+            string jsonData = JsonConvert.SerializeObject(storedData, Formatting.Indented);
             File.WriteAllText(dataFile, jsonData);
         }
 
