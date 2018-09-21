@@ -11,7 +11,7 @@ namespace JettisonClassLibrary
 	{
 		private static string logFile = Environment.GetEnvironmentVariable("AppData") + @"\Jettison\log.txt";
 
-		public static void Log(string type, string msg)
+		internal static void Log(LogOperationType type, string msg)
 		{
 			DateTime time = DateTime.Now;
 			string format = "yyyy-MM-dd HH:mm:ss";
@@ -59,4 +59,14 @@ namespace JettisonClassLibrary
 			return size / 1024;
 		}
 	}
+
+    internal enum LogOperationType
+    {
+        Info,
+        Delete,
+        DeleteFail,
+        MoveToRecycleBin,
+        MoveToRecycleBinFail,
+        UnknownError
+    }
 }

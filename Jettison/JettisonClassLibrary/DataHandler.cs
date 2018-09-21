@@ -176,7 +176,7 @@ namespace JettisonClassLibrary
             newFile.DropTime = DateTime.Now;
             jettison.JettisonFiles.Add(newFile);
             SaveDataFile();
-			JFLog.Log("INFO", file + " was added");
+			JFLog.Log(LogOperationType.Info, file + " was added");
 			return newFile;
         }
 

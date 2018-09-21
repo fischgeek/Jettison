@@ -120,17 +120,17 @@ namespace JettisonClassLibrary
 
         private static void DisposeFile(Jettison j, string file, bool delete)
         {
-            string opType = "ERR";
+            LogOperationType opType;
             if (delete)
             {
                 try
                 {
                     File.Delete(file);
-                    opType = "DEL";
+                    opType = LogOperationType.Delete;
                 }
                 catch (Exception)
                 {
-                    opType = "UNABLE TO DELETE FILE";
+                    opType = LogOperationType.DeleteFail;
                 }
             }
             else
@@ -138,11 +138,11 @@ namespace JettisonClassLibrary
                 try
                 {
                     FileOperationAPIWrapper.MoveToRecycleBin(file);
-                    opType = "REC";
+                    opType = LogOperationType.MoveToRecycleBin;
                 }
                 catch (Exception)
                 {
-                    opType = "UNABLE TO RECYCLE FILE";
+                    opType = LogOperationType.MoveToRecycleBinFail;
                 }
             }
             dh.RemoveFileFromJettison(j, file);
