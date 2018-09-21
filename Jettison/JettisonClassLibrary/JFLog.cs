@@ -17,6 +17,7 @@ namespace JettisonClassLibrary
 			string format = "yyyy-MM-dd HH:mm:ss";
 			string log = String.Format(@"[{0}] {1} {2}", time.ToString(format), type, msg);
 			FileInfo logInfo = new FileInfo(logFile);
+
 			if (File.Exists(logFile)) {
 				if (GetSizeInMb(logInfo.Length) >= 100)
                 {
@@ -39,21 +40,19 @@ namespace JettisonClassLibrary
 					}
 				}
 			}
-            else
+
+            try
             {
-				try
+                using (StreamWriter s = File.AppendText(logFile))
                 {
-                    using (StreamWriter s = File.AppendText(logFile))
-                    {
-                        s.WriteLine(log);
-                    }
-				}
-                catch
-                {
-					throw new Exception("Failed to write to the log file.");
-				}
-			}
-		}
+                    s.WriteLine(log);
+                }
+            }
+            catch
+            {
+                throw new Exception("Failed to write to the log file.");
+            }
+        }
 
 		private static long GetSizeInMb(long size)
 		{
