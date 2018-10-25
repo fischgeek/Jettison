@@ -17,19 +17,15 @@ namespace JettisonClassLibrary
         {
             //DataHandler dh = DataHandler.getInstance();
             List<Jettison> all = dh.GetAllJettisons();
-            while (all != null && all.Count > 0 && PowerOn)
-            {
-                foreach (Jettison j in all.ToList())
-                {
-                    if (Directory.Exists(j.Directory))
-                    {
+            while (all != null && all.Count > 0 && PowerOn) {
+                foreach (Jettison j in all.ToList()) {
+                    if (Directory.Exists(j.Directory)) {
 
                         string[] dirs = Directory.GetDirectories(j.Directory);
                         string[] files = Directory.GetFiles(j.Directory, "*.*", SearchOption.AllDirectories);
 
                         // first, check and remove files in all directories if necessary
-                        foreach (string file in files)
-                        {
+                        foreach (string file in files) {
                             CheckFile(j, file);
                         }
 
@@ -44,13 +40,11 @@ namespace JettisonClassLibrary
         private static void CheckFile(Jettison j, string file)
         {
             DateTime fileDate = File.GetLastAccessTime(file);
-            if (j.JettisonFiles == null)
-            {
+            if (j.JettisonFiles == null) {
                 j.JettisonFiles = new List<JettisonFile>();
             }
             JettisonFile jFile = j.JettisonFiles.Where(x => x.FullPath == file).FirstOrDefault();
-            if (jFile == null)
-            {
+            if (jFile == null) {
                 jFile = dh.AddFileToJettison(j, file);
             }
             fileDate = jFile.DropTime;
@@ -59,59 +53,46 @@ namespace JettisonClassLibrary
             bool delete = !j.Recycle;
 
             // 24 hours
-            if (j.MaxLife == 1)
-            {
-                if (span.TotalHours >= 24)
-                {
+            if (j.MaxLife == 1) {
+                if (span.TotalHours >= 24) {
                     DisposeFile(j, file, delete);
                 }
             }
 
             // 48 hours
-            else if (j.MaxLife == 2)
-            {
-                if (span.TotalHours >= 48)
-                {
+            else if (j.MaxLife == 2) {
+                if (span.TotalHours >= 48) {
                     DisposeFile(j, file, delete);
                 }
             }
 
             // 72 hours
-            else if (j.MaxLife == 3)
-            {
-                if (span.TotalHours >= 72)
-                {
+            else if (j.MaxLife == 3) {
+                if (span.TotalHours >= 72) {
                     DisposeFile(j, file, delete);
                 }
             }
 
             // custom
-            else if (j.MaxLife == 4)
-            {
+            else if (j.MaxLife == 4) {
 
                 // seconds
-                if (j.CustomLifeDuration == 1)
-                {
-                    if (span.TotalSeconds >= j.CustomLife)
-                    {
+                if (j.CustomLifeDuration == 1) {
+                    if (span.TotalSeconds >= j.CustomLife) {
                         DisposeFile(j, file, delete);
                     }
                 }
 
                 // minutes
-                else if (j.CustomLifeDuration == 2)
-                {
-                    if (span.TotalMinutes >= j.CustomLife)
-                    {
+                else if (j.CustomLifeDuration == 2) {
+                    if (span.TotalMinutes >= j.CustomLife) {
                         DisposeFile(j, file, delete);
                     }
                 }
 
                 // hours
-                else if (j.CustomLifeDuration == 3)
-                {
-                    if (span.TotalHours >= j.CustomLife)
-                    {
+                else if (j.CustomLifeDuration == 3) {
+                    if (span.TotalHours >= j.CustomLife) {
                         DisposeFile(j, file, delete);
                     }
                 }
@@ -132,11 +113,8 @@ namespace JettisonClassLibrary
                 {
                     opType = LogOperationType.DeleteFail;
                 }
-            }
-            else
-            {
-                try
-                {
+            } else {
+                try {
                     FileOperationAPIWrapper.MoveToRecycleBin(file);
                     opType = LogOperationType.MoveToRecycleBin;
                 }
@@ -147,13 +125,11 @@ namespace JettisonClassLibrary
             }
             dh.RemoveFileFromJettison(j, file);
 
-            if (settings["LogHistory"] == true)
-            {
+            if (settings["LogHistory"] == true) {
 				JFLog.Log(opType, file);
             }
 
-            if (settings["DisplayAlerts"] == true)
-            {
+            if (settings["DisplayAlerts"] == true) {
                 trayIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
                 trayIcon.BalloonTipTitle = "Jettison";
                 trayIcon.BalloonTipText = file + " was deleted";
@@ -164,12 +140,10 @@ namespace JettisonClassLibrary
         private static void CleanDirectory(string startLocation)
         {
             // http://stackoverflow.com/questions/2811509/c-sharp-remove-all-empty-subdirectories
-            foreach (var directory in System.IO.Directory.GetDirectories(startLocation))
-            {
+            foreach (var directory in System.IO.Directory.GetDirectories(startLocation)) {
                 CleanDirectory(directory);
-                if (System.IO.Directory.GetFiles(directory).Length == 0 && System.IO.Directory.GetDirectories(directory).Length == 0)
-                {
-                    Directory.Delete(directory, false);
+                if (System.IO.Directory.GetFiles(directory).Length == 0 && System.IO.Directory.GetDirectories(directory).Length == 0) {
+                    System.IO.Directory.Delete(directory, false);
                 }
             }
         }

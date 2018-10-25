@@ -92,19 +92,15 @@ namespace JettisonClassLibrary
         /// <param name="flags">FileOperationFlags to add in addition to FOF_ALLOWUNDO</param>
         public static bool Send(string path, FileOperationFlags flags)
         {
-            try
-            {
-                var fs = new SHFILEOPSTRUCT
-                {
+            try {
+                var fs = new SHFILEOPSTRUCT {
                     wFunc = FileOperationType.FO_DELETE,
                     pFrom = path + '\0' + '\0',
                     fFlags = FileOperationFlags.FOF_ALLOWUNDO | flags
                 };
                 SHFileOperation(ref fs);
                 return true;
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
                 return false;
             }
         }
@@ -131,17 +127,14 @@ namespace JettisonClassLibrary
         private static bool DeleteFile(string path, FileOperationFlags flags)
         {
             try {
-                var fs = new SHFILEOPSTRUCT
-                {
+                var fs = new SHFILEOPSTRUCT {
                     wFunc = FileOperationType.FO_DELETE,
                     pFrom = path + '\0' + '\0',
                     fFlags = flags
                 };
                 SHFileOperation(ref fs);
                 return true;
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
                 return false;
             }
         }

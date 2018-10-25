@@ -17,31 +17,21 @@ namespace JettisonClassLibrary
 			string format = "yyyy-MM-dd HH:mm:ss";
 			string log = String.Format(@"[{0}] {1} {2}", time.ToString(format), type, msg);
 			FileInfo logInfo = new FileInfo(logFile);
-
-			if (File.Exists(logFile))
-            {
-				if (GetSizeInMb(logInfo.Length) >= 100)
-                {
-					try
-                    {
+			if (File.Exists(logFile)) {
+				if (GetSizeInMb(logInfo.Length) >= 100) {
+					try {
 						File.Delete(logFile);
-					}
-                    catch
-                    {
+					} catch {
 						throw new Exception("Failed to delete the log file.");
 					}
 				}
 			}
 
-            try
-            {
-                using (StreamWriter s = File.AppendText(logFile))
-                {
+            try {
+                using (StreamWriter s = File.AppendText(logFile)) {
                     s.WriteLine(log);
                 }
-            }
-            catch
-            {
+            } catch {
                 throw new Exception("Failed to write to the log file.");
             }
         }

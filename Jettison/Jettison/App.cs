@@ -50,8 +50,7 @@ namespace JettisonApp
             trayIcon.ContextMenuStrip.Items.Add("Jettison").Font = new Font(Font, FontStyle.Bold);
             trayIcon.ContextMenuStrip.Items.Add("Exit");
 
-            if (dh.ShowMainForm())
-            {
+            if (dh.ShowMainForm()) {
                 this.Visible = true;
             }
         }
@@ -59,23 +58,18 @@ namespace JettisonApp
         private void TrayMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             string clickedItem = e.ClickedItem.Text;
-            if (clickedItem == "Jettison")
-            {
+            if (clickedItem == "Jettison") {
                 thisForm.Visible = true;
-            }
-            else if (clickedItem == "Exit")
-            {
+            } else if (clickedItem == "Exit") {
                 ExitApp();
             }
         }
 
         private void MenuDelete_Click(object sender, EventArgs e)
         {
-            if (lstMain.SelectedItems.Count > 0)
-            {
+            if (lstMain.SelectedItems.Count > 0) {
                 DialogResult result = MessageBox.Show("Are you sure you want to unregister this directory?", "Jettison", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
+                if (result == DialogResult.Yes) {
                     Jettison jettison = dh.GetJettisonByDirectory(lstMain.SelectedItems[0].Text);
                     dh.RemoveDirectory(jettison);
                     UpdateList();
@@ -85,11 +79,9 @@ namespace JettisonApp
 
         private void MenuEdit_Click(object sender, EventArgs e)
         {
-            if (lstMain.SelectedItems.Count > 0)
-            {
+            if (lstMain.SelectedItems.Count > 0) {
                 Jettison jettison = dh.GetJettisonByDirectory(lstMain.SelectedItems[0].Text);
-                if (Application.OpenForms["Register"] != null)
-                {
+                if (Application.OpenForms["Register"] != null) {
                     Application.OpenForms["Register"].Close();
                 }
                 Register register = new Register();
@@ -103,10 +95,8 @@ namespace JettisonApp
         {
             DeleteList();
             List<Jettison> all = dh.GetAllJettisons();
-            if (all != null)
-            {
-                foreach (var j in all)
-                {
+            if (all != null) {
+                foreach (var j in all) {
                     string[] row = { j.Directory, Jettison.GetLifeText(j) };
                     ListViewItem item = new ListViewItem(row);
                     lstMain.Items.Add(item);
@@ -143,21 +133,17 @@ namespace JettisonApp
 
         private void App_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (dh.CloseToTray())
-            {
+            if (dh.CloseToTray()) {
                 e.Cancel = true;
                 thisForm.Visible = false;
-            }
-            else
-            {
+            } else {
                 ExitApp();
             }
         }
 
         private void LstMain_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
+            if (e.Button == MouseButtons.Right) {
                 contextMenu.Show(lstMain, lstMain.PointToClient(Cursor.Position));
             }
         }
@@ -204,26 +190,20 @@ namespace JettisonApp
 
         private void BtnSettings_Click(object sender, EventArgs e)
         {
-            if (Application.OpenForms["Settings"] == null)
-            {
+            if (Application.OpenForms["Settings"] == null) {
                 Settings settings = new Settings();
                 settings.Show();
-            }
-            else
-            {
+            } else {
                 Application.OpenForms["Settings"].BringToFront();
             }
         }
 
         private void BtnRegister_Click(object sender, System.EventArgs e)
         {
-            if (Application.OpenForms["Register"] == null)
-            {
+            if (Application.OpenForms["Register"] == null) {
                 Register registerForm = new Register();
                 registerForm.Show();
-            }
-            else
-            {
+            } else {
                 Application.OpenForms["Register"].BringToFront();
             }
         }

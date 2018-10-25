@@ -22,41 +22,30 @@ namespace JettisonClassLibrary
         {
             instanceLoaded = true;
             string dataDir = appdata + @"\Jettison\";
-            if (!Directory.Exists(dataDir))
-            {
-				try
-                {
+            if (!Directory.Exists(dataDir)) {
+				try {
 					Directory.CreateDirectory(dataDir);
-				}
-                catch
-                {
+				} catch {
 					throw new Exception("Failed to create directory");
 				}
             }
             if (!File.Exists(dataFile)) {
-				try
-                {
+				try {
 					using (File.Create(dataFile)) { }
-				}
-                catch
-                {
+				} catch {
 					throw new Exception("Failed to create data file.");
 				}
             }
 
             string dataFileContents = string.Empty;
-            try
-            {
+            try {
                 dataFileContents = File.ReadAllText(dataFile);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 WriteLine(ex.Message);
 				throw new Exception("Failed to read the data file.");
             }
             storedData = JsonConvert.DeserializeObject<StoredData>(dataFileContents);
-            if (storedData == null)
-            {
+            if (storedData == null) {
                 storedData = StoredData.GetInstance();
             }
         }
@@ -68,24 +57,18 @@ namespace JettisonClassLibrary
 
         public bool ShowMainForm()
         {
-            if (storedData.Settings.ContainsKey("ShowOnStart"))
-            {
+            if (storedData.Settings.ContainsKey("ShowOnStart")) {
                 return storedData.Settings["ShowOnStart"];
-            }
-            else
-            {
+            } else {
                 return true;
             }
         }
 
         public bool CloseToTray()
         {
-            if (storedData.Settings.ContainsKey("CloseToTray"))
-            {
+            if (storedData.Settings.ContainsKey("CloseToTray")) {
                 return storedData.Settings["CloseToTray"];
-            }
-            else
-            {
+            } else {
                 return false;
             }
         }
@@ -119,8 +102,7 @@ namespace JettisonClassLibrary
 
         private bool JettisonExists(Jettison jettison)
         {
-            if (storedData.Jettisons.Count > 0)
-            {
+            if (storedData.Jettisons.Count > 0) {
                 return storedData.Jettisons.Exists(x => x.Id == jettison.Id);
             } else {
                 return false;
@@ -129,8 +111,7 @@ namespace JettisonClassLibrary
 
         public void RegisterDirectory(Jettison jettison)
         {
-            if (JettisonExists(jettison))
-            {
+            if (JettisonExists(jettison)) {
                 storedData.Jettisons.Remove(GetJettisonById(jettison.Id));
             }
             storedData.Jettisons.Add(jettison);
@@ -150,8 +131,7 @@ namespace JettisonClassLibrary
 
         public Dictionary<string, bool> GetSettings()
         {
-            if (storedData.Settings == null || storedData.Settings.Count == 0)
-            {
+            if (storedData.Settings == null || storedData.Settings.Count == 0) {
                 Dictionary<string, bool> firstTimeSettings = new Dictionary<string, bool>();
                 firstTimeSettings["RunOnStartup"] = true;
                 firstTimeSettings["ShowOnStart"] = true;
