@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using IWshRuntimeLibrary;
 
 namespace JettisonClassLibrary
-{   
+{
 
     public class FileOperationAPIWrapper
     {
@@ -128,7 +124,7 @@ namespace JettisonClassLibrary
 
         }
 
-        private static bool deleteFile(string path, FileOperationFlags flags)
+        private static bool DeleteFile(string path, FileOperationFlags flags)
         {
             try {
                 var fs = new SHFILEOPSTRUCT {
@@ -145,7 +141,7 @@ namespace JettisonClassLibrary
 
         public static bool DeleteCompletelySilent(string path)
         {
-            return deleteFile(path,
+            return DeleteFile(path,
                               FileOperationFlags.FOF_NOCONFIRMATION | FileOperationFlags.FOF_NOERRORUI |
                               FileOperationFlags.FOF_SILENT);
         }

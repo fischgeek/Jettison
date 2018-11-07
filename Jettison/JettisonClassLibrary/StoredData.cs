@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace JettisonClassLibrary
 {
@@ -14,7 +10,7 @@ namespace JettisonClassLibrary
 
         private StoredData() { }
 
-        public static StoredData getInstance()
+        public static StoredData GetInstance()
         {
             return instance;
         }

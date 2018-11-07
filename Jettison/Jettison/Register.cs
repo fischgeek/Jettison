@@ -1,24 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.IO;
-using static System.Diagnostics.Debug;
 using JettisonClassLibrary;
 
 namespace JettisonApp
 {
     public partial class Register : Form
     {
-        DataHandler dh = DataHandler.getInstance();
+        DataHandler dh = DataHandler.GetInstance();
         SaveFileDialog sfd = new SaveFileDialog();
-        public Jettison selectedJettison { get; set; }
+        public Jettison SelectedJettison { get; set; }
 
         public Register()
         {
@@ -30,15 +23,15 @@ namespace JettisonApp
             sfd.Title = "Select a folder";
         }
 
-        public void initEditForm()
+        public void InitEditForm()
         {
-            if (selectedJettison != null && !string.IsNullOrEmpty(selectedJettison.Id)) {
-                populateFormControls();
-                btnRegister.Text = "Update";
+            if (SelectedJettison != null && !string.IsNullOrEmpty(SelectedJettison.Id)) {
+                PopulateFormControls();
+                BtnRegister.Text = "Update";
             }
         }
 
-        private void btnBrowse_Click(object sender, EventArgs e)
+        private void BtnBrowse_Click(object sender, EventArgs e)
         {
             sfd.FileName = "Select a folder";
             sfd.ShowDialog();
@@ -52,12 +45,12 @@ namespace JettisonApp
             txtDirectory.Text = registeredDirectory;
         }
 
-        private void rbCustom_CheckedChanged(object sender, EventArgs e)
+        private void RbCustom_CheckedChanged(object sender, EventArgs e)
         {
-            setCustomLifeControls(rbCustom.Checked);
+            SetCustomLifeControls(rbCustom.Checked);
         }
 
-        private void setCustomLifeControls(bool enable = true)
+        private void SetCustomLifeControls(bool enable = true)
         {
             txtCustomLife.Enabled = enable;
             rbCustomLifeSeconds.Enabled = enable;
@@ -74,12 +67,12 @@ namespace JettisonApp
             }
         }
 
-        private void btnRegister_Click(object sender, EventArgs e)
+        private void BtnRegister_Click(object sender, EventArgs e)
         {
-            if (isFormValid()) {
+            if (IsFormValid()) {
                 //Jettison jettison = Jettison.MakeMeAThing((string alert) => MessageBox.Show(alert));
                 Jettison jettison = new Jettison();
-                jettison.Id = dh.generateNewId();
+                jettison.Id = dh.GenerateNewId();
 
                 int maxLife = 0;
                 int customLife = 0;
@@ -105,8 +98,8 @@ namespace JettisonApp
 
                 string message = "Directory registered successfully!";
 
-                if (selectedJettison != null) {
-                    jettison = selectedJettison;
+                if (SelectedJettison != null) {
+                    jettison = SelectedJettison;
                     message = "Updated successfully!";
                 }
 
@@ -115,16 +108,16 @@ namespace JettisonApp
                 jettison.CustomLife = customLife;
                 jettison.CustomLifeDuration = customLifeDuration;
                 jettison.Recycle = cbxRecycleFiles.Checked;
-                dh.registerDirectory(jettison);
+                dh.RegisterDirectory(jettison);
 
-                Form1 form = Application.OpenForms["Form1"] as Form1;
-                form.updateList();
+                App form = Application.OpenForms["App"] as App;
+                form.UpdateList();
                 //MessageBox.Show(message, "Jettison");
                 this.Close();
             }
         }
 
-        private bool isFormValid()
+        private bool IsFormValid()
         {
             string errorMsg = string.Empty;
             if (string.IsNullOrEmpty(txtDirectory.Text)) {
@@ -160,27 +153,27 @@ namespace JettisonApp
             return false;
         }
 
-        private void populateFormControls()
+        private void PopulateFormControls()
         {
-            txtDirectory.Text = selectedJettison.Directory;
-            if (selectedJettison.MaxLife == 1) {
+            txtDirectory.Text = SelectedJettison.Directory;
+            if (SelectedJettison.MaxLife == 1) {
                 rb24Hours.Checked = true;
-            } else if (selectedJettison.MaxLife == 2) {
+            } else if (SelectedJettison.MaxLife == 2) {
                 rb48Hours.Checked = true;
-            } else if (selectedJettison.MaxLife == 3) {
+            } else if (SelectedJettison.MaxLife == 3) {
                 rb72Hours.Checked = true;
-            } else if (selectedJettison.MaxLife == 4) {
+            } else if (SelectedJettison.MaxLife == 4) {
                 rbCustom.Checked = true;
                 txtCustomLife.Enabled = true;
                 rbCustomLifeSeconds.Enabled = true;
                 rbCustomLifeMinutes.Enabled = true;
                 rbCustomLifeHours.Enabled = true;
-                txtCustomLife.Text = selectedJettison.CustomLife.ToString();
-                if (selectedJettison.CustomLifeDuration == 1) {
+                txtCustomLife.Text = SelectedJettison.CustomLife.ToString();
+                if (SelectedJettison.CustomLifeDuration == 1) {
                     rbCustomLifeSeconds.Checked = true;
-                } else if (selectedJettison.CustomLifeDuration == 2) {
+                } else if (SelectedJettison.CustomLifeDuration == 2) {
                     rbCustomLifeMinutes.Checked = true;
-                } else if (selectedJettison.CustomLifeDuration == 3) {
+                } else if (SelectedJettison.CustomLifeDuration == 3) {
                     rbCustomLifeHours.Checked = true;
                 }
             }

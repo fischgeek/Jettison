@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static System.Diagnostics.Debug;
 
 namespace JettisonClassLibrary
@@ -16,7 +14,7 @@ namespace JettisonClassLibrary
         private string settingsFile = Environment.GetEnvironmentVariable("AppData") + @"\Jettison\settings.json";
         private List<Jettison> allJettisons = new List<Jettison>();
         private Dictionary<string, bool> settings = new Dictionary<string, bool>();
-        private StoredData storedData = StoredData.getInstance();
+        private StoredData storedData = StoredData.GetInstance();
         private static DataHandler instance = new DataHandler();
         public bool instanceLoaded = false;
 
@@ -48,16 +46,16 @@ namespace JettisonClassLibrary
             }
             storedData = JsonConvert.DeserializeObject<StoredData>(dataFileContents);
             if (storedData == null) {
-                storedData = StoredData.getInstance();
+                storedData = StoredData.GetInstance();
             }
         }
 
-        public static DataHandler getInstance()
+        public static DataHandler GetInstance()
         {
             return instance;
         }
 
-        public bool showMainForm()
+        public bool ShowMainForm()
         {
             if (storedData.Settings.ContainsKey("ShowOnStart")) {
                 return storedData.Settings["ShowOnStart"];
@@ -66,7 +64,7 @@ namespace JettisonClassLibrary
             }
         }
 
-        public bool closeToTray()
+        public bool CloseToTray()
         {
             if (storedData.Settings.ContainsKey("CloseToTray")) {
                 return storedData.Settings["CloseToTray"];
@@ -75,18 +73,18 @@ namespace JettisonClassLibrary
             }
         }
 
-        private void saveDataFile()
+        private void SaveDataFile()
         {
-            string jsonData = JsonConvert.SerializeObject(storedData);
+            string jsonData = JsonConvert.SerializeObject(storedData, Formatting.Indented);
             File.WriteAllText(dataFile, jsonData);
         }
 
-        public List<Jettison> getAllJettisons()
+        public List<Jettison> GetAllJettisons()
         {
             return storedData.Jettisons;
         }
 
-        public Jettison getJettisonById(string id)
+        public Jettison GetJettisonById(string id)
         {
             Jettison jettison = (from j in storedData.Jettisons
                                 where j.Id == id
@@ -94,7 +92,7 @@ namespace JettisonClassLibrary
             return jettison;
         }
 
-        public Jettison getJettisonByDirectory(string directory)
+        public Jettison GetJettisonByDirectory(string directory)
         {
             Jettison jettison = (from j in storedData.Jettisons
                                  where j.Directory == directory
@@ -102,7 +100,7 @@ namespace JettisonClassLibrary
             return jettison;
         }
 
-        private bool jettisonExists(Jettison jettison)
+        private bool JettisonExists(Jettison jettison)
         {
             if (storedData.Jettisons.Count > 0) {
                 return storedData.Jettisons.Exists(x => x.Id == jettison.Id);
@@ -111,27 +109,27 @@ namespace JettisonClassLibrary
             }
         }
 
-        public void registerDirectory(Jettison jettison)
+        public void RegisterDirectory(Jettison jettison)
         {
-            if (jettisonExists(jettison)) {
-                storedData.Jettisons.Remove(getJettisonById(jettison.Id));
+            if (JettisonExists(jettison)) {
+                storedData.Jettisons.Remove(GetJettisonById(jettison.Id));
             }
             storedData.Jettisons.Add(jettison);
-            saveDataFile();
+            SaveDataFile();
         }
 
-        public void removeDirectory(Jettison jettison)
+        public void RemoveDirectory(Jettison jettison)
         {
             storedData.Jettisons.Remove(jettison);
-            saveDataFile();
+            SaveDataFile();
         }
 
-        public string generateNewId()
+        public string GenerateNewId()
         {
             return Guid.NewGuid().ToString();
         }
 
-        public Dictionary<string, bool> getSettings()
+        public Dictionary<string, bool> GetSettings()
         {
             if (storedData.Settings == null || storedData.Settings.Count == 0) {
                 Dictionary<string, bool> firstTimeSettings = new Dictionary<string, bool>();
@@ -140,32 +138,32 @@ namespace JettisonClassLibrary
                 firstTimeSettings["CloseToTray"] = false;
                 firstTimeSettings["LogHistory"] = false;
                 firstTimeSettings["DisplayAlerts"] = false;
-                updateSettings(firstTimeSettings);
+                UpdateSettings(firstTimeSettings);
             }
             return storedData.Settings;
         }
 
-        public void updateSettings(Dictionary<string, bool> settingsFromDialog)
+        public void UpdateSettings(Dictionary<string, bool> settingsFromDialog)
         {
             storedData.Settings = settingsFromDialog;
-            saveDataFile();
+            SaveDataFile();
         }
 
-        public JettisonFile addFileToJettison(Jettison jettison, string file)
+        public JettisonFile AddFileToJettison(Jettison jettison, string file)
         {
             JettisonFile newFile = new JettisonFile();
             newFile.FullPath = file;
             newFile.DropTime = DateTime.Now;
             jettison.JettisonFiles.Add(newFile);
-            saveDataFile();
-			JFLog.Log("INFO", file + " was added");
+            SaveDataFile();
+			JFLog.Log(LogOperationType.Info, file + " was added");
 			return newFile;
         }
 
-        public void removeFileFromJettison(Jettison j, string file)
+        public void RemoveFileFromJettison(Jettison j, string file)
         {
             j.JettisonFiles.Remove(j.JettisonFiles.First(x => x.FullPath == file));
-            saveDataFile();
+            SaveDataFile();
         }
     }
 }

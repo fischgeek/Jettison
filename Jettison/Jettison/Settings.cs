@@ -1,25 +1,19 @@
 ﻿using JettisonClassLibrary;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JettisonApp
 {
     public partial class Settings : Form
     {
-        DataHandler dh = DataHandler.getInstance();
+        DataHandler dh = DataHandler.GetInstance();
 
         public Settings()
         {
             InitializeComponent();
             this.Icon = Properties.Resources.jettison;
-            Dictionary<string, bool> settings = dh.getSettings();
+            Dictionary<string, bool> settings = dh.GetSettings();
             if (settings.ContainsKey("RunOnStartup")) {
                 cbxRunOnStartup.Checked = settings["RunOnStartup"];
             }
@@ -39,7 +33,7 @@ namespace JettisonApp
             }
         }
 
-        private void btnSaveSettings_Click(object sender, EventArgs e)
+        private void BtnSaveSettings_Click(object sender, EventArgs e)
         {
             Dictionary<string, bool> settings = new Dictionary<string, bool>();
             settings.Add("RunOnStartup", cbxRunOnStartup.Checked);
@@ -47,16 +41,16 @@ namespace JettisonApp
             settings.Add("CloseToTray", cbxCloseToTray.Checked);
             settings.Add("LogHistory", cbxLogHistory.Checked);
             settings.Add("DisplayAlerts", cbxDisplayMessage.Checked);
-            dh.updateSettings(settings);
+            dh.UpdateSettings(settings);
 
             Jettison.HandleSettings(settings);
             this.Close();
-            //Form1 form = Application.OpenForms["Form1"] as Form1;
+            //App form = Application.OpenForms["App"] as App;
             //form.updateStatus("testing");
             //MessageBox.Show("Settings updated!", "Jettison");
         }
 
-        private void btnCancelSettings_Click(object sender, EventArgs e)
+        private void BtnCancelSettings_Click(object sender, EventArgs e)
         {
             this.Close();
         } 
