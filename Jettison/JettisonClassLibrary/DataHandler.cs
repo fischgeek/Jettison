@@ -12,8 +12,8 @@ namespace JettisonClassLibrary
         private string appdata = Environment.GetEnvironmentVariable("AppData");
         private string dataFile = Environment.GetEnvironmentVariable("AppData") + @"\Jettison\jettison.json";
         private string settingsFile = Environment.GetEnvironmentVariable("AppData") + @"\Jettison\settings.json";
-        private List<Jettison> allJettisons = new List<Jettison>();
-        private Dictionary<string, bool> settings = new Dictionary<string, bool>();
+        //private List<Jettison> allJettisons = new List<Jettison>();
+        //private Dictionary<string, bool> settings = new Dictionary<string, bool>();
         private StoredData storedData = StoredData.GetInstance();
         private static DataHandler instance = new DataHandler();
         public bool instanceLoaded = false;
