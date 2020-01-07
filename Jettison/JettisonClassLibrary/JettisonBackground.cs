@@ -39,15 +39,15 @@ namespace JettisonClassLibrary
 
         private static void CheckFile(Jettison j, string file)
         {
-            DateTime fileDate = File.GetLastAccessTime(file);
+            DateTime fileDate = File.GetLastWriteTime(file);
             if (j.JettisonFiles == null) {
                 j.JettisonFiles = new List<JettisonFile>();
             }
-            JettisonFile jFile = j.JettisonFiles.Where(x => x.FullPath == file).FirstOrDefault();
-            if (jFile == null) {
-                jFile = dh.AddFileToJettison(j, file);
-            }
-            fileDate = jFile.DropTime;
+            //JettisonFile jFile = j.JettisonFiles.Where(x => x.FullPath == file).FirstOrDefault();
+            //if (jFile == null) {
+                //jFile = dh.AddFileToJettison(j, file);
+            //}
+            //fileDate = jFile.DropTime;
             DateTime now = DateTime.Now;
             TimeSpan span = now.Subtract(fileDate);
             bool delete = !j.Recycle;
