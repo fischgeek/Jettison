@@ -122,7 +122,7 @@
             // 
             this.BtnCancelSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnCancelSettings.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancelSettings.ForeColor = System.Drawing.Color.DarkBlue;
+            this.BtnCancelSettings.ForeColor = System.Drawing.Color.Black;
             this.BtnCancelSettings.Location = new System.Drawing.Point(190, 207);
             this.BtnCancelSettings.Name = "BtnCancelSettings";
             this.BtnCancelSettings.Size = new System.Drawing.Size(75, 30);
