@@ -149,21 +149,23 @@ namespace JettisonClassLibrary
             SaveDataFile();
         }
 
-   //     public JettisonFile AddFileToJettison(Jettison jettison, string file)
-   //     {
-   //         JettisonFile newFile = new JettisonFile();
-   //         newFile.FullPath = file;
-   //         //newFile.DropTime = DateTime.Now;
-   //         jettison.JettisonFiles.Add(newFile);
-   //         SaveDataFile();
-			//JFLog.Log(LogOperationType.Info, file + " was added");
-			//return newFile;
-   //     }
+        //     public JettisonFile AddFileToJettison(Jettison jettison, string file)
+        //     {
+        //         JettisonFile newFile = new JettisonFile();
+        //         newFile.FullPath = file;
+        //         //newFile.DropTime = DateTime.Now;
+        //         jettison.JettisonFiles.Add(newFile);
+        //         SaveDataFile();
+        //JFLog.Log(LogOperationType.Info, file + " was added");
+        //return newFile;
+        //     }
 
         public void RemoveFileFromJettison(Jettison j, string file)
         {
-            j.JettisonFiles.Remove(j.JettisonFiles.First(x => x.FullPath == file));
-            SaveDataFile();
+            if (j.JettisonFiles.Count() > 0) {
+                j.JettisonFiles.Remove(j.JettisonFiles.First(x => x.FullPath == file));
+                SaveDataFile();
+            }
         }
     }
 }
